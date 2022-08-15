@@ -18,4 +18,5 @@ class TextFormFieldControllers {
 
 class TabBarController {
   static TabController? tabController;
+  static TabController? tabControllerWeb;
 }

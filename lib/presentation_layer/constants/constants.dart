@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:la_vie/presentation_layer/screen/web_screens/about_screen_web.dart';
+import 'package:la_vie/presentation_layer/screen/web_screens/blog_screen_web.dart';
+import 'package:la_vie/presentation_layer/screen/web_screens/community_screen_web.dart';
+import 'package:la_vie/presentation_layer/screen/web_screens/home_screen_web.dart';
+import 'package:la_vie/presentation_layer/screen/web_screens/shob_screen_web.dart';
 
 class AppFontSize {
   static double s10 = 10;
@@ -8,6 +13,8 @@ class AppFontSize {
   static double s18 = 18;
   static double s20 = 20;
   static double s22 = 22;
+  static double s36 = 36;
+  static double s30 = 30;
 }
 
 class AppPadding {
@@ -63,6 +70,9 @@ class AppHeight {
   static double h20 = 20;
   static double h22 = 22;
   static double h46 = 46.5;
+  static double h70 = 70;
+
+  static double h100 = 100;
 }
 
 class AppWidth {
@@ -78,6 +88,7 @@ class AppWidth {
   static double w20 = 20;
   static double w22 = 22;
   static double w44 = 44;
+  static double w100 = 100;
 }
 
 class AppColors {
@@ -95,3 +106,11 @@ class AppColors {
   static Color textFieldBorderColorGrey = const Color(0xff6F6F6F);
   static Color dividerColorGrey = const Color(0xff979797);
 }
+
+List<Map<String, Widget>> navBarList = [
+  {'Home': HomeScreenWeb()},
+  {'Shope': ShobScreenWeb()},
+  {'Blog': BlogScreenWeb()},
+  {'About': AboutScreenWeb()},
+  {'Community': CommunityScreenWeb()}
+];

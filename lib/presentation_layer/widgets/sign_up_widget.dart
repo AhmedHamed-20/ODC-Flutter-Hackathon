@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../components/components.dart';
 import '../constants/constants.dart';
 import '../constants/controllers.dart';
-import '../screen/components/components.dart';
 
 Widget signUpWidget(BuildContext context) {
   return SingleChildScrollView(

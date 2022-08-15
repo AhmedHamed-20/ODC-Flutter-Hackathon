@@ -6,8 +6,8 @@ import 'package:la_vie/data_layer/bloc/login_cubit/login_states.dart';
 import 'package:la_vie/presentation_layer/constants/constants.dart';
 import 'package:la_vie/presentation_layer/constants/controllers.dart';
 
-import '../widgets/login_widget.dart';
-import '../widgets/sign_up_widget.dart';
+import '../../widgets/login_widget.dart';
+import '../../widgets/sign_up_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
