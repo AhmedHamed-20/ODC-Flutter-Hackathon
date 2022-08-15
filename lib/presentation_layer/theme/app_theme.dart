@@ -16,6 +16,10 @@ ThemeData lightMode = ThemeData(
       fontSize: AppFontSize.s16,
       fontWeight: FontWeight.bold,
     ),
+    bodySmall: GoogleFonts.roboto(
+      color: AppColors.subtitleTextColor,
+      fontSize: AppFontSize.s16,
+    ),
     labelMedium: GoogleFonts.roboto(
       color: AppColors.textColorButton,
       fontSize: AppFontSize.s16,

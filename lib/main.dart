@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
       child: BlocConsumer<LoginCubit, LoginCubitStates>(
         builder: (context, state) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             theme: lightMode,
             home: const LoginScreen(),
           );

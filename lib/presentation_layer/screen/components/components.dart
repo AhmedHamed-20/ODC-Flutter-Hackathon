@@ -25,11 +25,11 @@ Widget defaultTextFormField({
       cursorColor: Theme.of(context).primaryColor,
       maxLines: maxLine,
       textDirection: textDirection,
-      style: Theme.of(context).textTheme.bodyText1,
+      style: Theme.of(context).textTheme.bodyLarge,
       controller: controller,
       keyboardType: keyboardType,
       decoration: InputDecoration(
-        contentPadding: EdgeInsetsDirectional.all(AppPadding.p20),
+        contentPadding: EdgeInsetsDirectional.all(AppPadding.p10),
         labelStyle: labelStyle,
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
