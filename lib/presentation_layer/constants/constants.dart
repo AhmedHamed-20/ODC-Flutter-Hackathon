@@ -50,6 +50,7 @@ class AppElevation {
 }
 
 class AppHeight {
+  static double h1 = 1;
   static double h2 = 2;
   static double h4 = 4;
   static double h6 = 6;
@@ -92,4 +93,5 @@ class AppColors {
   static Color iconColorWhite = Colors.white;
   static Color iconColorGrey = const Color(0xff6F6F6F);
   static Color textFieldBorderColorGrey = const Color(0xff6F6F6F);
+  static Color dividerColorGrey = const Color(0xff979797);
 }

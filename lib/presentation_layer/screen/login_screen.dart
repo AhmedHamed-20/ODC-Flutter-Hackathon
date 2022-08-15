@@ -6,8 +6,8 @@ import 'package:la_vie/data_layer/bloc/login_cubit/login_states.dart';
 import 'package:la_vie/presentation_layer/constants/constants.dart';
 import 'package:la_vie/presentation_layer/constants/controllers.dart';
 
-import '../widgets/widgets.dart';
-import 'components/components.dart';
+import '../widgets/login_widget.dart';
+import '../widgets/sign_up_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -83,11 +83,69 @@ class _LoginScreenState extends State<LoginScreen>
                         height: AppHeight.h10,
                       ),
                       Expanded(
+                        flex: 2,
                         child: TabBarView(
                           controller: TabBarController.tabController,
                           children: [
-                            Container(),
-                            loginWidget(context),
+                            signUpWidget(context),
+                            loginWidget(
+                              context: context,
+                              onPressedOnForgetPassword: () {},
+                              onPressedOnLogin: () {},
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Divider(
+                                    thickness: AppHeight.h1,
+                                    color: AppColors.dividerColorGrey,
+                                  ),
+                                ),
+                                Text(
+                                  ' or continue with ',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall
+                                      ?.copyWith(
+                                          color:
+                                              Theme.of(context).primaryColor),
+                                ),
+                                Expanded(
+                                  child: Divider(
+                                    thickness: AppHeight.h1,
+                                    color: AppColors.dividerColorGrey,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: AppHeight.h12,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {},
+                                  child:
+                                      Image.asset('assets/images/google.png'),
+                                ),
+                                SizedBox(
+                                  width: AppWidth.w16,
+                                ),
+                                GestureDetector(
+                                  onTap: () {},
+                                  child:
+                                      Image.asset('assets/images/facebook.png'),
+                                )
+                              ],
+                            ),
                           ],
                         ),
                       ),

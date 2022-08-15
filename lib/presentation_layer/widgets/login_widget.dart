@@ -4,7 +4,10 @@ import '../constants/constants.dart';
 import '../constants/controllers.dart';
 import '../screen/components/components.dart';
 
-Widget loginWidget(BuildContext context) {
+Widget loginWidget(
+    {required BuildContext context,
+    required VoidCallback onPressedOnLogin,
+    required VoidCallback onPressedOnForgetPassword}) {
   return SingleChildScrollView(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,7 +57,7 @@ Widget loginWidget(BuildContext context) {
           ),
         ),
         defaultButton(
-          onPressed: () {},
+          onPressed: onPressedOnLogin,
           buttonChild: Text(
             'Login',
             style: Theme.of(context).textTheme.labelMedium,
@@ -62,6 +65,20 @@ Widget loginWidget(BuildContext context) {
           width: double.infinity,
           height: AppHeight.h46,
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            TextButton(
+              onPressed: onPressedOnForgetPassword,
+              child: Text(
+                'Forget Password?',
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: Theme.of(context).primaryColor,
+                    ),
+              ),
+            )
+          ],
+        )
       ],
     ),
   );
