@@ -81,3 +81,65 @@ Widget defaultButton({
     ),
   );
 }
+
+Widget mobileHomeSearchBar({
+  required double width,
+  required double height,
+  TextEditingController? controller,
+  TextInputType? keyboardType,
+  Widget? label,
+  required double radius,
+  TextStyle? labelStyle,
+  Widget? suffixIcon,
+  Widget? prefixIcon,
+  ValueChanged<String>? onChanged,
+  FormFieldValidator<String>? validator,
+  ValueChanged<String>? onSubmit,
+  bool obscureText = false,
+  int maxLine = 1,
+  TextDirection textDirection = TextDirection.ltr,
+  required BuildContext context,
+}) {
+  return Theme(
+    data: Theme.of(context).copyWith(
+      splashColor: AppColors.transparentColor,
+    ),
+    child: TextFormField(
+      cursorColor: Theme.of(context).primaryColor,
+      maxLines: maxLine,
+      textDirection: textDirection,
+      style: Theme.of(context).textTheme.bodyLarge,
+      controller: controller,
+      keyboardType: keyboardType,
+      decoration: InputDecoration(
+        fillColor: AppColors.textFormFieldFillColor,
+        contentPadding: EdgeInsetsDirectional.all(AppPadding.p10),
+        labelStyle: labelStyle,
+        suffixIcon: suffixIcon,
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.textFormFieldFillColor),
+          borderRadius: BorderRadius.circular(AppRadius.r18),
+        ),
+        prefixIcon: prefixIcon,
+        filled: true,
+        label: label,
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.textFormFieldFillColor),
+          borderRadius: BorderRadius.circular(AppRadius.r18),
+        ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: AppColors.textFormFieldFillColor),
+          borderRadius: BorderRadius.circular(AppRadius.r18),
+        ),
+        disabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: AppColors.textFormFieldFillColor),
+          borderRadius: BorderRadius.circular(AppRadius.r18),
+        ),
+      ),
+      obscureText: obscureText,
+      onChanged: onChanged,
+      validator: validator,
+      onFieldSubmitted: onSubmit,
+    ),
+  );
+}
