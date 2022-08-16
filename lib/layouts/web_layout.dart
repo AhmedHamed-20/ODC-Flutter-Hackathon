@@ -30,7 +30,7 @@ class LayoutScreenWeb extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Flexible(
-                          flex: 2,
+                          flex: 1,
                           child: Image.asset('assets/images/logo.png')),
                       navBarWeb(navBarList),
                       Flexible(
