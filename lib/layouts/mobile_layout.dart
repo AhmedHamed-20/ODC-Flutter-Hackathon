@@ -14,6 +14,7 @@ class MobileLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<GeneralCubit, GeneralCubitStates>(
       builder: (context, state) {
+        var generalCubit = GeneralCubit.get(context);
         return Scaffold(
           appBar: AppBar(
             backgroundColor: AppColors.transparentColor,
@@ -21,54 +22,29 @@ class MobileLayout extends StatelessWidget {
             title: Image.asset('assets/images/logo.png'),
             centerTitle: true,
           ),
-          body: Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(AppPadding.p12),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 4,
-                      child: mobileHomeSearchBar(
-                        prefixIcon: Icon(
-                          Icons.search,
-                          color: AppColors.iconColorGrey,
-                        ),
-                        label: Text(
-                          'Search',
-                          style:
-                              Theme.of(context).textTheme.labelMedium?.copyWith(
-                                    color: AppColors.titleTextColor,
-                                  ),
-                        ),
-                        context: context,
-                        height: AppHeight.h10,
-                        width: double.infinity,
-                        radius: AppRadius.r18,
-                        controller:
-                            TextFormFieldControllers.homeSearchController,
-                      ),
-                    ),
-                    Expanded(
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(AppRadius.r5),
-                        ),
-                        color: Theme.of(context).primaryColor,
-                        child: Padding(
-                          padding: EdgeInsets.all(AppPadding.p8),
-                          child: Icon(
-                            Icons.shopping_cart_outlined,
-                            color: AppColors.iconColorWhite,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: generalCubit.currentBottomNavIndex,
+            onTap: generalCubit.changeBottomNavIndex,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'home',
               ),
             ],
           ),
+          body: generalCubit.screens[generalCubit.currentBottomNavIndex],
         );
       },
       listener: (context, state) {},

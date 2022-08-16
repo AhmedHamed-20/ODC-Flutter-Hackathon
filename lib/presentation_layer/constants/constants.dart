@@ -3,7 +3,7 @@ import 'package:la_vie/presentation_layer/screen/web_screens/about_screen_web.da
 import 'package:la_vie/presentation_layer/screen/web_screens/blog_screen_web.dart';
 import 'package:la_vie/presentation_layer/screen/web_screens/community_screen_web.dart';
 import 'package:la_vie/presentation_layer/screen/web_screens/home_screen_web.dart';
-import 'package:la_vie/presentation_layer/screen/web_screens/shob_screen_web.dart';
+import 'package:la_vie/presentation_layer/screen/web_screens/shop_screen_web.dart';
 
 class AppFontSize {
   static double s10 = 10;
@@ -111,7 +111,7 @@ class AppColors {
 
 List<Map<String, Widget>> navBarList = [
   {'Home': HomeScreenWeb()},
-  {'Shope': ShobScreenWeb()},
+  {'Shope': ShopScreenWeb()},
   {'Blog': BlogScreenWeb()},
   {'About': AboutScreenWeb()},
   {'Community': CommunityScreenWeb()}
