@@ -30,7 +30,8 @@ class MyApp extends StatelessWidget {
             theme: lightMode,
             home: LayoutBuilder(
               builder: ((context, constraints) {
-                if (constraints.minWidth <= 550) {
+                if (constraints.minWidth <= 824 ||
+                    constraints.minHeight <= 412) {
                   return LoginScreen();
                 }
                 return LayoutScreenWeb();
