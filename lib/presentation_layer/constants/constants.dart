@@ -43,6 +43,7 @@ class AppRadius {
 }
 
 class AppElevation {
+  static double eL0 = 0;
   static double eL2 = 2;
   static double eL4 = 4;
   static double eL6 = 6;
@@ -105,6 +106,7 @@ class AppColors {
   static Color iconColorGrey = const Color(0xff6F6F6F);
   static Color textFieldBorderColorGrey = const Color(0xff6F6F6F);
   static Color dividerColorGrey = const Color(0xff979797);
+  static Color textFormFieldFillColor = const Color(0xffF8F8F8);
 }
 
 List<Map<String, Widget>> navBarList = [

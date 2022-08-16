@@ -14,6 +14,7 @@ class TextFormFieldControllers {
       TextEditingController();
   static TextEditingController lastNameConfirmSignUpController =
       TextEditingController();
+  static TextEditingController homeSearchController = TextEditingController();
 }
 
 class TabBarController {
