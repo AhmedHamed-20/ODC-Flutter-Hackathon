@@ -4,6 +4,7 @@ import '../../components/components.dart';
 import '../../constants/constants.dart';
 import '../../constants/controllers.dart';
 import '../../widgets/card_product.dart';
+import 'cart_screen.dart';
 
 class HomeScreenMobile extends StatelessWidget {
   const HomeScreenMobile({Key? key}) : super(key: key);
@@ -48,16 +49,22 @@ class HomeScreenMobile extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(AppRadius.r5),
-                    ),
-                    color: Theme.of(context).primaryColor,
-                    child: Padding(
-                      padding: const EdgeInsets.all(AppPadding.p8),
-                      child: Icon(
-                        Icons.shopping_cart_outlined,
-                        color: AppColors.iconColorWhite,
+                  child: InkWell(
+                    onTap: () {
+                      navigatePushTo(
+                          navigateTO: const CartScreen(), context: context);
+                    },
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(AppRadius.r5),
+                      ),
+                      color: Theme.of(context).primaryColor,
+                      child: Padding(
+                        padding: const EdgeInsets.all(AppPadding.p8),
+                        child: Icon(
+                          Icons.shopping_cart_outlined,
+                          color: AppColors.iconColorWhite,
+                        ),
                       ),
                     ),
                   ),

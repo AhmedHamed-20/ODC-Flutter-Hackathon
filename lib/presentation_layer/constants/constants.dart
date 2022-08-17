@@ -41,6 +41,8 @@ class AppRadius {
   static const double r18 = 18;
   static const double r20 = 20;
   static const double r22 = 22;
+  static const double r40 = 40;
+  static const double r70 = 70;
 }
 
 class AppElevation {
@@ -110,6 +112,7 @@ class AppColors {
   static Color textFieldBorderColorGrey = const Color(0xff6F6F6F);
   static Color dividerColorGrey = const Color(0xff979797);
   static Color textFormFieldFillColor = const Color(0xffF8F8F8);
+  static Color starsCircleBorder = const Color(0xffFFCA10);
 }
 
 void navigatePushTo(

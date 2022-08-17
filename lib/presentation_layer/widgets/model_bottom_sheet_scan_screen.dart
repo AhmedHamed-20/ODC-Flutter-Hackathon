@@ -8,43 +8,41 @@ Widget modelBottomSheetScan({required BuildContext context}) {
     height: MediaQuery.of(context).size.height,
     child: Column(
       children: [
-        GestureDetector(
-          child: Flexible(
-            child: GestureDetector(
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.5,
-                color: Colors.transparent,
-                child: Padding(
-                  padding: const EdgeInsets.all(AppPadding.p18),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        children: [
-                          Card(
-                            color: Colors.black.withOpacity(0.6),
-                            child: Padding(
-                              padding: const EdgeInsets.all(AppPadding.p8),
-                              child: Icon(
-                                Icons.home,
-                                color: AppColors.iconColorGrey,
-                              ),
+        Flexible(
+          child: GestureDetector(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.5,
+              color: Colors.transparent,
+              child: Padding(
+                padding: const EdgeInsets.all(AppPadding.p18),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        Card(
+                          color: Colors.black.withOpacity(0.6),
+                          child: Padding(
+                            padding: const EdgeInsets.all(AppPadding.p8),
+                            child: Icon(
+                              Icons.home,
+                              color: AppColors.iconColorGrey,
                             ),
                           ),
-                          const SizedBox(
-                            width: AppWidth.w8,
-                          ),
-                          Text(
-                            '25 %',
-                            style: Theme.of(context).textTheme.labelMedium,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                        const SizedBox(
+                          width: AppWidth.w8,
+                        ),
+                        Text(
+                          '25 %',
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -105,16 +103,17 @@ Widget modelBottomSheetScan({required BuildContext context}) {
                   Flexible(
                     flex: 1,
                     child: defaultButton(
-                        onPressed: () {},
-                        buttonChild: Padding(
-                          padding: const EdgeInsets.all(AppPadding.p12),
-                          child: Text(
-                            'Go To Blog',
-                            style: Theme.of(context).textTheme.labelMedium,
-                          ),
+                      onPressed: () {},
+                      buttonChild: Padding(
+                        padding: const EdgeInsets.all(AppPadding.p12),
+                        child: Text(
+                          'Go To Blog',
+                          style: Theme.of(context).textTheme.labelMedium,
                         ),
-                        width: double.infinity,
-                        height: double.infinity),
+                      ),
+                      width: double.infinity,
+                      height: double.infinity,
+                    ),
                   )
                 ],
               ),

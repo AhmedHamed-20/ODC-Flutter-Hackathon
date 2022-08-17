@@ -5,6 +5,7 @@ import 'package:la_vie/data_layer/bloc/general_cubit/general_cubit_states.dart';
 import 'package:la_vie/presentation_layer/constants/constants.dart';
 import '../data_layer/bloc/general_cubit/general_cubit.dart';
 import '../presentation_layer/screen/mobile_screens/scan_screen.dart';
+import '../presentation_layer/screen/mobile_screens/user_profile_screen.dart';
 
 class MobileLayout extends StatelessWidget {
   const MobileLayout({Key? key}) : super(key: key);
@@ -51,7 +52,8 @@ class MobileLayout extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: () {
-                    navigatePushTo(navigateTO: ScanScreen(), context: context);
+                    navigatePushTo(
+                        navigateTO: const ScanScreen(), context: context);
                     generalCubit.currentBottomNavIndex = 1;
                     //  generalCubit.changeBottomNavIndex(1);
                   },
@@ -69,7 +71,10 @@ class MobileLayout extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: () {
-                    generalCubit.changeBottomNavIndex(3);
+                    navigatePushTo(
+                        navigateTO: const UserProfileScreen(),
+                        context: context);
+                    generalCubit.currentBottomNavIndex = 3;
                   },
                   icon: const Icon(
                     IconlyBroken.profile,
