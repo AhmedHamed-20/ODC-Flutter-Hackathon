@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../components/components.dart';
 import '../../constants/constants.dart';
 import '../../constants/controllers.dart';
@@ -12,60 +11,100 @@ class HomeScreenMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: EdgeInsets.all(AppPadding.p12),
-          child: Row(
-            children: [
-              Expanded(
-                flex: 4,
-                child: mobileHomeSearchBar(
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: AppColors.iconColorGrey,
+        Flexible(
+          flex: 2,
+          child: Padding(
+            padding: const EdgeInsets.all(AppPadding.p12),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 4,
+                  child: mobileHomeSearchBar(
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: AppColors.iconColorGrey,
+                    ),
+                    label: Text(
+                      'Search',
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                            color: AppColors.titleTextColor,
+                          ),
+                    ),
+                    context: context,
+                    height: AppHeight.h10,
+                    width: double.infinity,
+                    radius: AppRadius.r18,
+                    controller: TextFormFieldControllers.homeSearchController,
                   ),
-                  label: Text(
-                    'Search',
-                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          color: AppColors.titleTextColor,
-                        ),
-                  ),
-                  context: context,
-                  height: AppHeight.h10,
-                  width: double.infinity,
-                  radius: AppRadius.r18,
-                  controller: TextFormFieldControllers.homeSearchController,
                 ),
-              ),
-              Expanded(
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppRadius.r5),
-                  ),
-                  color: Theme.of(context).primaryColor,
-                  child: Padding(
-                    padding: EdgeInsets.all(AppPadding.p8),
-                    child: Icon(
-                      Icons.shopping_cart_outlined,
-                      color: AppColors.iconColorWhite,
+                Expanded(
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AppRadius.r5),
+                    ),
+                    color: Theme.of(context).primaryColor,
+                    child: Padding(
+                      padding: const EdgeInsets.all(AppPadding.p8),
+                      child: Icon(
+                        Icons.shopping_cart_outlined,
+                        color: AppColors.iconColorWhite,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-        Expanded(
+        Flexible(
+          child: ListView.builder(
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(
+                    left: AppPadding.p8, right: AppPadding.p8),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.textFormFieldFillColor,
+                    borderRadius: BorderRadius.circular(AppRadius.r5),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Center(
+                      child: Text(
+                        'All',
+                        style: Theme.of(context).textTheme.subtitle1,
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+            itemCount: 5,
+            scrollDirection: Axis.horizontal,
+          ),
+        ),
+        Flexible(
+          flex: 12,
           child: GridView.builder(
-            padding: EdgeInsets.only(
-              top: AppHeight.h10,
+            padding: const EdgeInsets.only(
+              top: AppHeight.h80,
             ),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: AppWidth.w10,
-              mainAxisSpacing: AppHeight.h46,
+              mainAxisSpacing: AppHeight.h80,
             ),
             itemBuilder: (context, index) {
-              return cardProduct();
+              return cardProduct(
+                context: context,
+                addToCarCallBack: () {},
+                amount: '1',
+                imageUrl: 'assets/images/tree_home.png',
+                minusCallBck: () {},
+                plusCallBack: () {},
+                subTitle: 'subTitle',
+                title: 'Title',
+              );
             },
             itemCount: 3,
           ),
