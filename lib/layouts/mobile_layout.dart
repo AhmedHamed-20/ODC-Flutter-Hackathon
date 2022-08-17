@@ -4,6 +4,7 @@ import 'package:iconly/iconly.dart';
 import 'package:la_vie/data_layer/bloc/general_cubit/general_cubit_states.dart';
 import 'package:la_vie/presentation_layer/constants/constants.dart';
 import '../data_layer/bloc/general_cubit/general_cubit.dart';
+import '../presentation_layer/screen/mobile_screens/scan_screen.dart';
 
 class MobileLayout extends StatelessWidget {
   const MobileLayout({Key? key}) : super(key: key);
@@ -50,7 +51,9 @@ class MobileLayout extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: () {
-                    generalCubit.changeBottomNavIndex(1);
+                    navigatePushTo(navigateTO: ScanScreen(), context: context);
+                    generalCubit.currentBottomNavIndex = 1;
+                    //  generalCubit.changeBottomNavIndex(1);
                   },
                   icon: const Icon(
                     IconlyBroken.scan,

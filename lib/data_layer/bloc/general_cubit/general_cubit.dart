@@ -6,6 +6,7 @@ import 'package:la_vie/presentation_layer/screen/mobile_screens/home_screen_mobi
 import 'package:la_vie/presentation_layer/screen/mobile_screens/shop_screen_mobile.dart';
 
 import '../../../presentation_layer/screen/mobile_screens/notification_screen_mobile.dart';
+import '../../../presentation_layer/screen/mobile_screens/scan_screen.dart';
 import 'general_cubit_states.dart';
 
 class GeneralCubit extends Cubit<GeneralCubitStates> {
@@ -16,7 +17,7 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
 //////////////////func//////////////......................
   List<Widget> screens = const [
     HomeScreenMobile(),
-    BlogScreenMobile(),
+    ScanScreen(),
     NotificationScreen(),
     ShopScreenMobile(),
   ];
