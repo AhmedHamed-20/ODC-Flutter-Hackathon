@@ -109,6 +109,18 @@ class AppColors {
   static Color textFormFieldFillColor = const Color(0xffF8F8F8);
 }
 
+void navigatePushTo(
+    {required Widget navigateTO, required BuildContext context}) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (BuildContext context) {
+        return navigateTO;
+      },
+    ),
+  );
+}
+
 List<Map<String, Widget>> navBarList = [
   {'Home': HomeScreenWeb()},
   {'Shope': ShopScreenWeb()},

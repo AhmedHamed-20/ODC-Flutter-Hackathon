@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:la_vie/presentation_layer/screen/mobile_screens/search_screen_mobile.dart';
 import '../../components/components.dart';
 import '../../constants/constants.dart';
 import '../../constants/controllers.dart';
@@ -19,22 +20,31 @@ class HomeScreenMobile extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 4,
-                  child: mobileHomeSearchBar(
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: AppColors.iconColorGrey,
+                  child: GestureDetector(
+                    onTap: () {
+                      navigatePushTo(
+                          navigateTO: const SearchScreenMobile(),
+                          context: context);
+                    },
+                    child: mobileHomeSearchBar(
+                      enabled: false,
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: AppColors.iconColorGrey,
+                      ),
+                      label: Text(
+                        'Search',
+                        style:
+                            Theme.of(context).textTheme.labelMedium?.copyWith(
+                                  color: AppColors.titleTextColor,
+                                ),
+                      ),
+                      context: context,
+                      height: AppHeight.h10,
+                      width: double.infinity,
+                      radius: AppRadius.r18,
+                      controller: TextFormFieldControllers.homeSearchController,
                     ),
-                    label: Text(
-                      'Search',
-                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                            color: AppColors.titleTextColor,
-                          ),
-                    ),
-                    context: context,
-                    height: AppHeight.h10,
-                    width: double.infinity,
-                    radius: AppRadius.r18,
-                    controller: TextFormFieldControllers.homeSearchController,
                   ),
                 ),
                 Expanded(

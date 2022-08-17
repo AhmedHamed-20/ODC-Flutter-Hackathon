@@ -97,6 +97,7 @@ Widget mobileHomeSearchBar({
   ValueChanged<String>? onSubmit,
   bool obscureText = false,
   int maxLine = 1,
+  bool enabled = true,
   TextDirection textDirection = TextDirection.ltr,
   required BuildContext context,
 }) {
@@ -105,6 +106,7 @@ Widget mobileHomeSearchBar({
       splashColor: AppColors.transparentColor,
     ),
     child: TextFormField(
+      enabled: enabled,
       cursorColor: Theme.of(context).primaryColor,
       maxLines: maxLine,
       textDirection: textDirection,
