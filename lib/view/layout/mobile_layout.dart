@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
+import 'package:la_vie/view/screen/mobile_screens/home_screen_mobile.dart';
 import 'package:la_vie/view_model/general_cubit/general_cubit.dart';
 import 'package:la_vie/view_model/general_cubit/general_cubit_states.dart';
 
 import '../constants/constants.dart';
 
+import '../screen/mobile_screens/blog_screen_mobile.dart';
 import '../screen/mobile_screens/community_screen_mobile.dart';
 import '../screen/mobile_screens/scan_screen.dart';
 import '../screen/mobile_screens/user_profile_screen.dart';
@@ -25,8 +27,7 @@ class MobileLayout extends StatelessWidget {
             backgroundColor: Theme.of(context).primaryColor,
             clipBehavior: Clip.antiAlias,
             onPressed: () {
-              navigatePushTo(
-                  navigateTO: const CommunityScreenMobile(), context: context);
+              generalCubit.changeBottomNavIndex(0);
             },
             child: const Icon(
               IconlyBroken.home,
@@ -50,7 +51,11 @@ class MobileLayout extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () {
-                    generalCubit.changeBottomNavIndex(0);
+                    navigatePushTo(
+                      navigateTO: const BlogScreenMobile(),
+                      context: context,
+                    );
+                    //  generalCubit.currentBottomNavIndex = 4;
                   },
                   icon: const Icon(
                     IconlyBroken.home,
@@ -67,6 +72,7 @@ class MobileLayout extends StatelessWidget {
                     IconlyBroken.scan,
                   ),
                 ),
+                const SizedBox.shrink(),
                 IconButton(
                   onPressed: () {
                     generalCubit.changeBottomNavIndex(2);
