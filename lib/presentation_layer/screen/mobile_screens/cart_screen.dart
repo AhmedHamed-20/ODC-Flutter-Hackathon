@@ -9,6 +9,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Text(
           'My Cart',
@@ -31,7 +32,7 @@ class CartScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Flexible(
-            flex: 8,
+            flex: 6,
             child: ListView.builder(
               itemBuilder: (context, index) {
                 return Padding(
@@ -154,14 +155,34 @@ class CartScreen extends StatelessWidget {
           Flexible(
             child: Padding(
               padding: const EdgeInsets.all(AppPadding.p12),
-              child: defaultButton(
-                onPressed: () {},
-                buttonChild: Text(
-                  'Checkout',
-                  style: Theme.of(context).textTheme.labelMedium,
-                ),
-                width: double.infinity,
-                height: AppHeight.h46,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Total',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      Text(
+                        '180.000 EGP',
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              color: Theme.of(context).primaryColor,
+                            ),
+                      ),
+                    ],
+                  ),
+                  defaultButton(
+                    onPressed: () {},
+                    buttonChild: Text(
+                      'Checkout',
+                      style: Theme.of(context).textTheme.labelMedium,
+                    ),
+                    width: double.infinity,
+                    height: AppHeight.h46,
+                  ),
+                ],
               ),
             ),
           ),
