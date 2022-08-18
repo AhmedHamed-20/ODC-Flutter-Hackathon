@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:la_vie/presentation_layer/screen/web_screens/about_screen_web.dart';
-import 'package:la_vie/presentation_layer/screen/web_screens/blog_screen_web.dart';
-import 'package:la_vie/presentation_layer/screen/web_screens/community_screen_web.dart';
-import 'package:la_vie/presentation_layer/screen/web_screens/home_screen_web.dart';
-import 'package:la_vie/presentation_layer/screen/web_screens/shop_screen_web.dart';
+
+import '../screen/web_screens/about_screen_web.dart';
+import '../screen/web_screens/blog_screen_web.dart';
+import '../screen/web_screens/community_screen_web.dart';
+import '../screen/web_screens/home_screen_web.dart';
+import '../screen/web_screens/shop_screen_web.dart';
 
 class AppFontSize {
   static const double s10 = 10;

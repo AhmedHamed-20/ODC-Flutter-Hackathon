@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:la_vie/presentation_layer/components/components.dart';
-import 'package:la_vie/presentation_layer/constants/controllers.dart';
 
+import '../../components/defaults.dart';
 import '../../constants/constants.dart';
+import '../../constants/controllers.dart';
 
 class CreatePostScreen extends StatelessWidget {
   const CreatePostScreen({Key? key}) : super(key: key);

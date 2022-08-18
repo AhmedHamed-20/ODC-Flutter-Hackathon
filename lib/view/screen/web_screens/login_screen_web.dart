@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:la_vie/data_layer/bloc/login_cubit/login_cubit.dart';
-import 'package:la_vie/data_layer/bloc/login_cubit/login_states.dart';
-import 'package:la_vie/presentation_layer/constants/constants.dart';
+import 'package:la_vie/view_model/login_cubit/login_cubit.dart';
+import 'package:la_vie/view_model/login_cubit/login_states.dart';
 
+import '../../constants/constants.dart';
 import '../../constants/controllers.dart';
-import '../../widgets/login_widget.dart';
-import '../../widgets/or_connect_with_widget.dart';
-import '../../widgets/sign_up_widget.dart';
+import '../../components/login_widget.dart';
+import '../../components/or_connect_with_widget.dart';
+import '../../components/sign_up_widget.dart';
 
 class LoginScreenWeb extends StatefulWidget {
   const LoginScreenWeb({Key? key}) : super(key: key);

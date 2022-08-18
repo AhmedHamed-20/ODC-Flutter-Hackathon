@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:la_vie/presentation_layer/constants/constants.dart';
 
-import '../../widgets/model_bottom_sheet_scan_screen.dart';
+import '../../constants/constants.dart';
+import '../../components/model_bottom_sheet_scan_screen.dart';
 
 class ScanScreen extends StatelessWidget {
   const ScanScreen({Key? key}) : super(key: key);

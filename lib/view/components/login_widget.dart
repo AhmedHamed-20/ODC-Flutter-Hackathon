@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../components/components.dart';
+import 'defaults.dart';
 import '../constants/constants.dart';
 import '../constants/controllers.dart';
 

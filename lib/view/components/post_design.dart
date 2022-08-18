@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:la_vie/presentation_layer/constants/constants.dart';
+
+import '../constants/constants.dart';
 
 Widget postDesign({
   required BuildContext context,

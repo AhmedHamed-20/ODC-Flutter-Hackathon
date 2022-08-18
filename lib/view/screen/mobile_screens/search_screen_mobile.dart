@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:la_vie/presentation_layer/components/components.dart';
-import 'package:la_vie/presentation_layer/constants/constants.dart';
-import 'package:la_vie/presentation_layer/constants/controllers.dart';
+
+import '../../components/defaults.dart';
+import '../../constants/constants.dart';
+import '../../constants/controllers.dart';
 
 class SearchScreenMobile extends StatelessWidget {
   const SearchScreenMobile({Key? key}) : super(key: key);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:la_vie/presentation_layer/constants/constants.dart';
+
+import '../constants/constants.dart';
 
 Widget defaultTextFormField({
   required double width,
@@ -29,7 +30,7 @@ Widget defaultTextFormField({
       controller: controller,
       keyboardType: keyboardType,
       decoration: InputDecoration(
-        contentPadding: EdgeInsetsDirectional.all(AppPadding.p10),
+        contentPadding: const EdgeInsetsDirectional.all(AppPadding.p10),
         labelStyle: labelStyle,
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,

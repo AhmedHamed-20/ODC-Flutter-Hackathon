@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:la_vie/presentation_layer/components/components.dart';
-import 'package:la_vie/presentation_layer/constants/constants.dart';
-import 'package:la_vie/presentation_layer/constants/controllers.dart';
 
-import '../../widgets/post_design.dart';
+import '../../components/defaults.dart';
+import '../../constants/constants.dart';
+import '../../constants/controllers.dart';
+import '../../components/post_design.dart';
 import 'create_post.dart';
 
 class CommunityScreenMobile extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:la_vie/presentation_layer/components/components.dart';
-import 'package:la_vie/presentation_layer/constants/constants.dart';
+
+import '../constants/constants.dart';
 
 Widget cardProduct({
   required BuildContext context,

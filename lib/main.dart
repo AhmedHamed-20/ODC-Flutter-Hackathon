@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:la_vie/data_layer/bloc/general_cubit/general_cubit.dart';
-import 'package:la_vie/data_layer/bloc/login_cubit/login_cubit.dart';
-import 'package:la_vie/data_layer/bloc/login_cubit/login_states.dart';
-import 'package:la_vie/presentation_layer/screen/mobile_screens/login_screen.dart';
-import 'package:la_vie/presentation_layer/screen/web_screens/login_screen_web.dart';
-import 'package:la_vie/presentation_layer/theme/app_theme.dart';
 
-import 'layouts/mobile_layout.dart';
-import 'layouts/web_layout.dart';
+import 'package:la_vie/view/theme/app_theme.dart';
+
+import 'view/layout/mobile_layout.dart';
+import 'view/layout/web_layout.dart';
+import 'view_model/general_cubit/general_cubit.dart';
+import 'view_model/login_cubit/login_cubit.dart';
+import 'view_model/login_cubit/login_states.dart';
 
 void main() {
   runApp(const MyApp());

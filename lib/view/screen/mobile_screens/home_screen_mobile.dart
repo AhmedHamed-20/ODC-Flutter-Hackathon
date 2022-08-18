@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:la_vie/presentation_layer/screen/mobile_screens/search_screen_mobile.dart';
-import '../../components/components.dart';
+import 'package:la_vie/view/screen/mobile_screens/search_screen_mobile.dart';
+import '../../components/defaults.dart';
 import '../../constants/constants.dart';
 import '../../constants/controllers.dart';
-import '../../widgets/card_product.dart';
+import '../../components/card_product.dart';
 import 'cart_screen.dart';
 
 class HomeScreenMobile extends StatelessWidget {

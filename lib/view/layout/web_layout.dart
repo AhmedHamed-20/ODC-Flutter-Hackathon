@@ -1,12 +1,14 @@
 import 'dart:math' as math; // import this
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:la_vie/data_layer/bloc/login_cubit/login_cubit.dart';
-import 'package:la_vie/data_layer/bloc/login_cubit/login_states.dart';
-import 'package:la_vie/presentation_layer/components/components.dart';
-import 'package:la_vie/presentation_layer/constants/constants.dart';
-import '../presentation_layer/screen/web_screens/login_screen_web.dart';
-import '../presentation_layer/widgets/nav_bar_web.dart';
+import 'package:la_vie/view/components/nav_bar_web.dart';
+import 'package:la_vie/view_model/login_cubit/login_cubit.dart';
+import 'package:la_vie/view_model/login_cubit/login_states.dart';
+
+import '../components/defaults.dart';
+import '../constants/constants.dart';
+
+import '../screen/web_screens/login_screen_web.dart';
 
 class LayoutScreenWeb extends StatelessWidget {
   const LayoutScreenWeb({Key? key}) : super(key: key);

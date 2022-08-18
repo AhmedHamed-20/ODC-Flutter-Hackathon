@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:la_vie/data_layer/bloc/login_cubit/login_cubit.dart';
-import 'package:la_vie/data_layer/bloc/login_cubit/login_states.dart';
-import 'package:la_vie/presentation_layer/constants/constants.dart';
-import 'package:la_vie/presentation_layer/constants/controllers.dart';
+import 'package:la_vie/view_model/login_cubit/login_cubit.dart';
+import 'package:la_vie/view_model/login_cubit/login_states.dart';
 
-import '../../widgets/login_widget.dart';
-import '../../widgets/sign_up_widget.dart';
+import '../../constants/constants.dart';
+import '../../constants/controllers.dart';
+import '../../components/login_widget.dart';
+import '../../components/sign_up_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen>
                   child: Image.asset('assets/images/login_tree.png'),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: AppPadding.p30,
                   ),
                   child: Column(
@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen>
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: AppHeight.h10,
                       ),
                       Expanded(
@@ -125,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen>
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: AppHeight.h12,
                             ),
                             Row(
@@ -136,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen>
                                   child:
                                       Image.asset('assets/images/google.png'),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: AppWidth.w16,
                                 ),
                                 GestureDetector(

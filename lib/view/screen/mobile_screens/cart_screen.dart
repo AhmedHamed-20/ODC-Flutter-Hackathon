@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:la_vie/presentation_layer/components/components.dart';
 
+import '../../components/defaults.dart';
 import '../../constants/constants.dart';
 
 class CartScreen extends StatelessWidget {
@@ -9,7 +9,6 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Text(
           'My Cart',

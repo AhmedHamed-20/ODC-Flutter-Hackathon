@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:la_vie/presentation_layer/constants/constants.dart';
+
+import '../constants/constants.dart';
 
 ThemeData lightMode = ThemeData(
   bottomSheetTheme: const BottomSheetThemeData(

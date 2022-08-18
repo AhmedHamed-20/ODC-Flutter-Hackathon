@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:la_vie/presentation_layer/components/components.dart';
 
-import 'package:la_vie/presentation_layer/constants/constants.dart';
+import 'defaults.dart';
+import '../constants/constants.dart';
 
 Widget modelBottomSheetScan({required BuildContext context}) {
   return SizedBox(
