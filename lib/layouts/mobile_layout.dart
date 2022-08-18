@@ -4,6 +4,7 @@ import 'package:iconly/iconly.dart';
 import 'package:la_vie/data_layer/bloc/general_cubit/general_cubit_states.dart';
 import 'package:la_vie/presentation_layer/constants/constants.dart';
 import '../data_layer/bloc/general_cubit/general_cubit.dart';
+import '../presentation_layer/screen/mobile_screens/community_screen_mobile.dart';
 import '../presentation_layer/screen/mobile_screens/scan_screen.dart';
 import '../presentation_layer/screen/mobile_screens/user_profile_screen.dart';
 
@@ -21,7 +22,10 @@ class MobileLayout extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             backgroundColor: Theme.of(context).primaryColor,
             clipBehavior: Clip.antiAlias,
-            onPressed: () {},
+            onPressed: () {
+              navigatePushTo(
+                  navigateTO: const CommunityScreenMobile(), context: context);
+            },
             child: const Icon(
               IconlyBroken.home,
             ),

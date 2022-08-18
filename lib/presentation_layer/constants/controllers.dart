@@ -15,6 +15,10 @@ class TextFormFieldControllers {
   static TextEditingController lastNameConfirmSignUpController =
       TextEditingController();
   static TextEditingController homeSearchController = TextEditingController();
+  static TextEditingController forumsSearchController = TextEditingController();
+  static TextEditingController titlePostController = TextEditingController();
+  static TextEditingController descriptionPostController =
+      TextEditingController();
 }
 
 class TabBarController {
