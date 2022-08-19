@@ -4,7 +4,12 @@ import 'defaults.dart';
 import '../constants/constants.dart';
 import '../constants/controllers.dart';
 
-Widget signUpWidget(BuildContext context) {
+Widget signUpWidget({
+  required BuildContext context,
+  required onTabOnSignUp,
+  required Widget sufixIcon,
+  required bool obScureText,
+}) {
   return SingleChildScrollView(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -15,22 +20,21 @@ Widget signUpWidget(BuildContext context) {
                 color: AppColors.subtitleTextColor,
               ),
         ),
-        SizedBox(
+        const SizedBox(
           height: AppPadding.p8,
         ),
         Padding(
-          padding: EdgeInsets.only(bottom: AppPadding.p30),
+          padding: const EdgeInsets.only(bottom: AppPadding.p30),
           child: defaultTextFormField(
             width: double.infinity,
             height: AppHeight.h46,
             radius: AppRadius.r5,
             context: context,
-            controller:
-                TextFormFieldControllers.firstNameConfirmSignUpController,
+            controller: TextFormFieldControllers.firstNameSignUpController,
             keyboardType: TextInputType.text,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: AppPadding.p8,
         ),
         Text(
@@ -39,18 +43,17 @@ Widget signUpWidget(BuildContext context) {
                 color: AppColors.subtitleTextColor,
               ),
         ),
-        SizedBox(
+        const SizedBox(
           height: AppPadding.p8,
         ),
         Padding(
-          padding: EdgeInsets.only(bottom: AppPadding.p30),
+          padding: const EdgeInsets.only(bottom: AppPadding.p30),
           child: defaultTextFormField(
             width: double.infinity,
             height: AppHeight.h46,
             radius: AppRadius.r5,
             context: context,
-            controller:
-                TextFormFieldControllers.lastNameConfirmSignUpController,
+            controller: TextFormFieldControllers.lastNameSignUpController,
             keyboardType: TextInputType.text,
           ),
         ),
@@ -60,14 +63,16 @@ Widget signUpWidget(BuildContext context) {
                 color: AppColors.subtitleTextColor,
               ),
         ),
-        SizedBox(
+        const SizedBox(
           height: AppPadding.p8,
         ),
         Padding(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             bottom: AppPadding.p30,
           ),
           child: defaultTextFormField(
+            obscureText: obScureText,
+            suffixIcon: sufixIcon,
             width: double.infinity,
             height: AppHeight.h46,
             radius: AppRadius.r5,
@@ -82,14 +87,16 @@ Widget signUpWidget(BuildContext context) {
                 color: AppColors.subtitleTextColor,
               ),
         ),
-        SizedBox(
+        const SizedBox(
           height: AppPadding.p8,
         ),
         Padding(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             bottom: AppPadding.p30,
           ),
           child: defaultTextFormField(
+            obscureText: obScureText,
+            suffixIcon: sufixIcon,
             width: double.infinity,
             height: AppHeight.h46,
             radius: AppRadius.r5,
@@ -103,11 +110,11 @@ Widget signUpWidget(BuildContext context) {
                 color: AppColors.subtitleTextColor,
               ),
         ),
-        SizedBox(
+        const SizedBox(
           height: AppPadding.p8,
         ),
         Padding(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             bottom: AppPadding.p30,
           ),
           child: defaultTextFormField(
@@ -120,7 +127,7 @@ Widget signUpWidget(BuildContext context) {
           ),
         ),
         defaultButton(
-          onPressed: () {},
+          onPressed: onTabOnSignUp,
           buttonChild: Text(
             'Sign Up',
             style: Theme.of(context).textTheme.labelMedium,

@@ -7,7 +7,9 @@ import '../constants/controllers.dart';
 Widget loginWidget(
     {required BuildContext context,
     required VoidCallback onPressedOnLogin,
-    required VoidCallback onPressedOnForgetPassword}) {
+    required VoidCallback onPressedOnForgetPassword,
+    required bool obScureText,
+    required Widget suffixIcon}) {
   return SingleChildScrollView(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -18,11 +20,11 @@ Widget loginWidget(
                 color: AppColors.subtitleTextColor,
               ),
         ),
-        SizedBox(
+        const SizedBox(
           height: AppPadding.p8,
         ),
         Padding(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             bottom: AppPadding.p30,
           ),
           child: defaultTextFormField(
@@ -40,14 +42,16 @@ Widget loginWidget(
                 color: AppColors.subtitleTextColor,
               ),
         ),
-        SizedBox(
+        const SizedBox(
           height: AppPadding.p8,
         ),
         Padding(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             bottom: AppPadding.p30,
           ),
           child: defaultTextFormField(
+            obscureText: obScureText,
+            suffixIcon: suffixIcon,
             width: double.infinity,
             height: AppHeight.h46,
             radius: AppRadius.r5,

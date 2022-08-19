@@ -57,8 +57,8 @@ class MobileLayout extends StatelessWidget {
                     );
                     //  generalCubit.currentBottomNavIndex = 4;
                   },
-                  icon: const Icon(
-                    IconlyBroken.home,
+                  icon: Image.asset(
+                    'assets/images/fire.png',
                   ),
                 ),
                 IconButton(
@@ -68,8 +68,10 @@ class MobileLayout extends StatelessWidget {
                     generalCubit.currentBottomNavIndex = 1;
                     //  generalCubit.changeBottomNavIndex(1);
                   },
-                  icon: const Icon(
+                  icon: Icon(
                     IconlyBroken.scan,
+                    color: AppColors.iconColorBlack,
+                    size: AppHeight.h28,
                   ),
                 ),
                 const SizedBox.shrink(),
@@ -77,8 +79,10 @@ class MobileLayout extends StatelessWidget {
                   onPressed: () {
                     generalCubit.changeBottomNavIndex(2);
                   },
-                  icon: const Icon(
+                  icon: Icon(
                     IconlyBroken.notification,
+                    color: AppColors.iconColorBlack,
+                    size: AppHeight.h28,
                   ),
                 ),
                 IconButton(
@@ -88,8 +92,10 @@ class MobileLayout extends StatelessWidget {
                         context: context);
                     generalCubit.currentBottomNavIndex = 3;
                   },
-                  icon: const Icon(
+                  icon: Icon(
                     IconlyBroken.profile,
+                    color: AppColors.iconColorBlack,
+                    size: AppHeight.h28,
                   ),
                 ),
               ],

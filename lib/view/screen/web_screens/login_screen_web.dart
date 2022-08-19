@@ -29,6 +29,7 @@ class _LoginScreenWebState extends State<LoginScreenWeb>
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginCubitStates>(
       builder: (context, state) {
+        var loginCubit = LoginCubit.get(context);
         return Column(
           children: [
             TabBar(
@@ -54,7 +55,7 @@ class _LoginScreenWebState extends State<LoginScreenWeb>
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: AppHeight.h10,
             ),
             Expanded(
@@ -67,7 +68,21 @@ class _LoginScreenWebState extends State<LoginScreenWeb>
                       left: MediaQuery.of(context).size.width * 0.2,
                       right: MediaQuery.of(context).size.width * 0.2,
                     ),
-                    child: signUpWidget(context),
+                    child: signUpWidget(
+                        obScureText: loginCubit.passwordSignUpObscureText,
+                        sufixIcon: IconButton(
+                          onPressed: () {
+                            loginCubit.changeObscureValue(inLogin: false);
+                          },
+                          icon: Icon(
+                            loginCubit.passwordSignUpObscureText
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: AppColors.iconColorGrey,
+                          ),
+                        ),
+                        context: context,
+                        onTabOnSignUp: () {}),
                   ),
                   Padding(
                     padding: EdgeInsets.only(
@@ -75,6 +90,18 @@ class _LoginScreenWebState extends State<LoginScreenWeb>
                       right: MediaQuery.of(context).size.width * 0.2,
                     ),
                     child: loginWidget(
+                      obScureText: loginCubit.passwordloginObscureText,
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          loginCubit.changeObscureValue(inLogin: true);
+                        },
+                        icon: Icon(
+                          loginCubit.passwordloginObscureText
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: AppColors.iconColorGrey,
+                        ),
+                      ),
                       context: context,
                       onPressedOnForgetPassword: () {},
                       onPressedOnLogin: () {},

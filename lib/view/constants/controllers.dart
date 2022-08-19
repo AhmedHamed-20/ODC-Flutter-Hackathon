@@ -10,9 +10,9 @@ class TextFormFieldControllers {
       TextEditingController();
   static TextEditingController passwordConfirmSignUpController =
       TextEditingController();
-  static TextEditingController firstNameConfirmSignUpController =
+  static TextEditingController firstNameSignUpController =
       TextEditingController();
-  static TextEditingController lastNameConfirmSignUpController =
+  static TextEditingController lastNameSignUpController =
       TextEditingController();
   static TextEditingController homeSearchController = TextEditingController();
   static TextEditingController forumsSearchController = TextEditingController();

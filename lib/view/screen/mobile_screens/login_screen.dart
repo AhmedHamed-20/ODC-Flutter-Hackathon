@@ -28,6 +28,7 @@ class _LoginScreenState extends State<LoginScreen>
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginCubitStates>(
       builder: (context, state) {
+        var loginCubit = LoginCubit.get(context);
         return Scaffold(
           body: SafeArea(
             child: Stack(
@@ -49,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen>
                         height: MediaQuery.of(context).size.height * 0.2,
                       ),
                       Padding(
-                        padding: EdgeInsets.all(AppPadding.p16),
+                        padding: const EdgeInsets.all(AppPadding.p16),
                         child: Center(
                           child: Image.asset(
                             'assets/images/logo.png',
@@ -87,11 +88,56 @@ class _LoginScreenState extends State<LoginScreen>
                         child: TabBarView(
                           controller: TabBarController.tabController,
                           children: [
-                            signUpWidget(context),
+                            signUpWidget(
+                              obScureText: loginCubit.passwordSignUpObscureText,
+                              sufixIcon: IconButton(
+                                onPressed: () {
+                                  loginCubit.changeObscureValue(inLogin: false);
+                                },
+                                icon: Icon(
+                                  loginCubit.passwordSignUpObscureText
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: AppColors.iconColorGrey,
+                                ),
+                              ),
+                              context: context,
+                              onTabOnSignUp: () {
+                                loginCubit.signUp(
+                                  firstName: TextFormFieldControllers
+                                      .firstNameSignUpController.text,
+                                  lastName: TextFormFieldControllers
+                                      .lastNameSignUpController.text,
+                                  email: TextFormFieldControllers
+                                      .emailSignUpController.text,
+                                  password: TextFormFieldControllers
+                                      .passwordSignUpController.text,
+                                );
+                              },
+                            ),
                             loginWidget(
+                              obScureText: loginCubit.passwordloginObscureText,
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  loginCubit.changeObscureValue(inLogin: true);
+                                },
+                                icon: Icon(
+                                  loginCubit.passwordloginObscureText
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: AppColors.iconColorGrey,
+                                ),
+                              ),
                               context: context,
                               onPressedOnForgetPassword: () {},
-                              onPressedOnLogin: () {},
+                              onPressedOnLogin: () {
+                                loginCubit.userLogin(
+                                  email: TextFormFieldControllers
+                                      .emailLoginController.text,
+                                  password: TextFormFieldControllers
+                                      .passwordLoginController.text,
+                                );
+                              },
                             ),
                           ],
                         ),

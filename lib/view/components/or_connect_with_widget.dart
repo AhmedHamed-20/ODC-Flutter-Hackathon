@@ -81,7 +81,7 @@ Widget connectWith(BuildContext context, VoidCallback onTabOnGoogle,
                       child: Row(
                         children: [
                           Image.asset('assets/images/facebook.png'),
-                          SizedBox(
+                          const SizedBox(
                             width: AppWidth.w8,
                           ),
                           Text(
