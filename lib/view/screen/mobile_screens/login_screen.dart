@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:la_vie/view/layout/mobile_layout.dart';
 import 'package:la_vie/view_model/login_cubit/login_cubit.dart';
 import 'package:la_vie/view_model/login_cubit/login_states.dart';
 
@@ -89,6 +90,7 @@ class _LoginScreenState extends State<LoginScreen>
                           controller: TabBarController.tabController,
                           children: [
                             signUpWidget(
+                              states: state,
                               obScureText: loginCubit.passwordSignUpObscureText,
                               sufixIcon: IconButton(
                                 onPressed: () {
@@ -103,7 +105,8 @@ class _LoginScreenState extends State<LoginScreen>
                               ),
                               context: context,
                               onTabOnSignUp: () {
-                                loginCubit.signUp(
+                                loginCubit
+                                    .signUp(
                                   firstName: TextFormFieldControllers
                                       .firstNameSignUpController.text,
                                   lastName: TextFormFieldControllers
@@ -112,10 +115,19 @@ class _LoginScreenState extends State<LoginScreen>
                                       .emailSignUpController.text,
                                   password: TextFormFieldControllers
                                       .passwordSignUpController.text,
-                                );
+                                )
+                                    .then((value) {
+                                  if (state is UserDataGetError ||
+                                      loginCubit.dataGetSuccess) {
+                                    navigatePushAndRemove(
+                                        navigateTO: const MobileLayout(),
+                                        context: context);
+                                  }
+                                });
                               },
                             ),
                             loginWidget(
+                              state: state,
                               obScureText: loginCubit.passwordloginObscureText,
                               suffixIcon: IconButton(
                                 onPressed: () {
@@ -131,12 +143,22 @@ class _LoginScreenState extends State<LoginScreen>
                               context: context,
                               onPressedOnForgetPassword: () {},
                               onPressedOnLogin: () {
-                                loginCubit.userLogin(
+                                loginCubit
+                                    .userLogin(
                                   email: TextFormFieldControllers
                                       .emailLoginController.text,
                                   password: TextFormFieldControllers
                                       .passwordLoginController.text,
-                                );
+                                )
+                                    .then((value) {
+                                  if (state is UserDataGetError ||
+                                      loginCubit.dataGetSuccess) {
+                                    navigatePushAndRemove(
+                                        navigateTO: const MobileLayout(),
+                                        context: context);
+                                  }
+                                });
+                                // ensure that data get success from the state or bool to avoid any change in state
                               },
                             ),
                           ],

@@ -5,6 +5,7 @@ class GetMyDataModel {
   static String? email;
   static String? imageUrl;
   static List? userNotification;
+  static int? userPoints;
 
   static void storeMyData(Map<String, dynamic> myData) {
     userId = myData['data']['userId'];
@@ -12,7 +13,8 @@ class GetMyDataModel {
     lastName = myData['data']['lastName'];
     email = myData['data']['email'];
     imageUrl = myData['data']['imageUrl'];
-    userNotification = myData['data']['userNotification'];
+    userNotification = myData['data']['UserNotification'];
+    userPoints = myData['data']['UserPoints'];
   }
 }
 

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:la_vie/view_model/login_cubit/login_states.dart';
 
 import 'defaults.dart';
 import '../constants/constants.dart';
 import '../constants/controllers.dart';
 
 Widget signUpWidget({
+  LoginCubitStates? states,
   required BuildContext context,
   required onTabOnSignUp,
   required Widget sufixIcon,
@@ -71,8 +73,6 @@ Widget signUpWidget({
             bottom: AppPadding.p30,
           ),
           child: defaultTextFormField(
-            obscureText: obScureText,
-            suffixIcon: sufixIcon,
             width: double.infinity,
             height: AppHeight.h46,
             radius: AppRadius.r5,
@@ -118,6 +118,8 @@ Widget signUpWidget({
             bottom: AppPadding.p30,
           ),
           child: defaultTextFormField(
+            obscureText: obScureText,
+            suffixIcon: sufixIcon,
             width: double.infinity,
             height: AppHeight.h46,
             radius: AppRadius.r5,
@@ -126,15 +128,21 @@ Widget signUpWidget({
                 TextFormFieldControllers.passwordConfirmSignUpController,
           ),
         ),
-        defaultButton(
-          onPressed: onTabOnSignUp,
-          buttonChild: Text(
-            'Sign Up',
-            style: Theme.of(context).textTheme.labelMedium,
-          ),
-          width: double.infinity,
-          height: AppHeight.h46,
-        ),
+        states is SignUpLoadingData
+            ? Center(
+                child: CircularProgressIndicator(
+                  color: Theme.of(context).primaryColor,
+                ),
+              )
+            : defaultButton(
+                onPressed: onTabOnSignUp,
+                buttonChild: Text(
+                  'Sign Up',
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
+                width: double.infinity,
+                height: AppHeight.h46,
+              ),
       ],
     ),
   );

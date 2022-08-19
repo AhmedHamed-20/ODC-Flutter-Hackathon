@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:la_vie/view_model/login_cubit/login_states.dart';
 
 import 'defaults.dart';
 import '../constants/constants.dart';
@@ -9,6 +10,7 @@ Widget loginWidget(
     required VoidCallback onPressedOnLogin,
     required VoidCallback onPressedOnForgetPassword,
     required bool obScureText,
+    LoginCubitStates? state,
     required Widget suffixIcon}) {
   return SingleChildScrollView(
     child: Column(
@@ -60,15 +62,21 @@ Widget loginWidget(
             keyboardType: TextInputType.emailAddress,
           ),
         ),
-        defaultButton(
-          onPressed: onPressedOnLogin,
-          buttonChild: Text(
-            'Login',
-            style: Theme.of(context).textTheme.labelMedium,
-          ),
-          width: double.infinity,
-          height: AppHeight.h46,
-        ),
+        state is LoginLoadingData
+            ? Center(
+                child: CircularProgressIndicator(
+                  color: Theme.of(context).primaryColor,
+                ),
+              )
+            : defaultButton(
+                onPressed: onPressedOnLogin,
+                buttonChild: Text(
+                  'Login',
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
+                width: double.infinity,
+                height: AppHeight.h46,
+              ),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [

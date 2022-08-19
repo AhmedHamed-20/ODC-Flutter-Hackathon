@@ -16,12 +16,15 @@ class LoginCubit extends Cubit<LoginCubitStates> {
 //////////////////////////var///////////////////////////////
   bool passwordloginObscureText = true;
   bool passwordSignUpObscureText = true;
+  // to use in login screen and navigate it's become true
+  bool dataGetSuccess = false;
   /////////////Func////////////////////////////////////////
-  userLogin({
+  Future userLogin({
     required String email,
     required String password,
-  }) {
-    DioHelper.postData(
+  }) async {
+    emit(LoginLoadingData());
+    return await DioHelper.postData(
       headers: {'Content-Type': 'application/json'},
       url: EndPoints.signIn,
       data: {
@@ -29,48 +32,53 @@ class LoginCubit extends Cubit<LoginCubitStates> {
         "email": email,
       },
     ).then(
-      (value) {
+      (value) async {
         LoginModel.storeSignUpData(value.data);
         CacheHelper.setData(key: 'accessToken', value: LoginModel.accessToken)
             .then((value) {})
             .catchError((onError) {});
-        getMyData(LoginModel.accessToken!);
+        await getMyData(LoginModel.accessToken!);
+        emit(LoginDataGetSuccess());
       },
     ).catchError(
       (error) {
         if (error is DioError) {
           print(error.response);
+          emit(LoginDataGetError());
         }
       },
     );
   }
 
-  void signUp({
+  Future signUp({
     required String firstName,
     required String lastName,
     required String email,
     required String password,
-  }) {
-    DioHelper.postData(url: EndPoints.signUp, data: {
+  }) async {
+    emit(SignUpLoadingData());
+    return await DioHelper.postData(url: EndPoints.signUp, data: {
       'firstName': firstName,
       'lastName': lastName,
       'email': email,
       'password': password,
     }, headers: {
       'Content-Type': 'application/json'
-    }).then((value) {
+    }).then((value) async {
       SignUpModel.storeSignUpData(value.data);
       CacheHelper.setData(key: 'accessToken', value: SignUpModel.accessToken);
-      getMyData(SignUpModel.accessToken!);
+      await getMyData(SignUpModel.accessToken!);
+      emit(SignUpDataGetSuccess());
     }).catchError((onError) {
       if (onError is DioError) {
         print(onError.response);
+        emit(SignUpDataGetError());
       }
     });
   }
 
-  void getMyData(String accessToken) {
-    DioHelper.getData(
+  getMyData(String accessToken) {
+    return DioHelper.getData(
       url: EndPoints.getMe,
       headers: {
         'Authorization': 'Bearer $accessToken',
@@ -78,12 +86,17 @@ class LoginCubit extends Cubit<LoginCubitStates> {
       },
     ).then(
       (value) {
+        print(value);
+        dataGetSuccess = true;
         GetMyDataModel.storeMyData(value.data);
+        emit(UserDataGetSuccess());
       },
     ).catchError(
       (onError) {
         if (onError is DioError) {
+          dataGetSuccess = false;
           print(onError.response);
+          emit(UserDataGetError());
         }
       },
     );

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:la_vie/model/cache/shared_preferences.dart';
 
 import '../screen/web_screens/about_screen_web.dart';
 import '../screen/web_screens/blog_screen_web.dart';
 import '../screen/web_screens/community_screen_web.dart';
 import '../screen/web_screens/home_screen_web.dart';
 import '../screen/web_screens/shop_screen_web.dart';
+
+String accessToken = CacheHelper.getData(key: 'accessToken');
 
 class AppFontSize {
   static const double s10 = 10;
@@ -131,6 +134,19 @@ void navigatePushTo(
         return navigateTO;
       },
     ),
+  );
+}
+
+void navigatePushAndRemove(
+    {required Widget navigateTO, required BuildContext context}) {
+  Navigator.pushAndRemoveUntil(
+    context,
+    MaterialPageRoute(
+      builder: (BuildContext context) {
+        return navigateTO;
+      },
+    ),
+    (route) => false,
   );
 }
 

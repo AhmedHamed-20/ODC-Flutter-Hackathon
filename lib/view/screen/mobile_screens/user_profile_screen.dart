@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:la_vie/model/data_models/get_my_data_model/get_my_data_model.dart';
 
 import '../../constants/constants.dart';
 
@@ -19,7 +20,8 @@ class UserProfileScreen extends StatelessWidget {
                     child: Stack(
                       children: [
                         Image.network(
-                          'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
+                          GetMyDataModel.imageUrl ??
+                              'https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-no-thumbnail-image-placeholder-for-forums-blogs-and-websites.jpg?ver=6',
                           width: MediaQuery.of(context).size.width,
                           fit: BoxFit.cover,
                         ),
@@ -40,17 +42,18 @@ class UserProfileScreen extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const CircleAvatar(
+                              CircleAvatar(
                                 radius: AppRadius.r70,
                                 backgroundImage: NetworkImage(
-                                  'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
+                                  GetMyDataModel.imageUrl ??
+                                      'https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-no-thumbnail-image-placeholder-for-forums-blogs-and-websites.jpg?ver=6',
                                 ),
                               ),
                               const SizedBox(
                                 height: AppHeight.h8,
                               ),
                               Text(
-                                'Ahmed Mohamed',
+                                '${GetMyDataModel.firstName} ${GetMyDataModel.lastName}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .labelMedium
@@ -116,7 +119,9 @@ class UserProfileScreen extends StatelessWidget {
                                       width: AppWidth.w8,
                                     ),
                                     Text(
-                                      'You have 30 points',
+                                      GetMyDataModel.userPoints == null
+                                          ? 'You dont\'t have any points'
+                                          : 'You have ${GetMyDataModel.userPoints.toString()} points',
                                       style: Theme.of(context)
                                           .textTheme
                                           .titleLarge,
