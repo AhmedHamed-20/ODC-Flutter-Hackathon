@@ -4,4 +4,5 @@ class EndPoints {
   static const String signIn = '$baseUrl/api/v1/auth/signin';
   static const String getMe = '$baseUrl/api/v1/user/me';
   static const String blogs = '$baseUrl/api/v1/products/blogs';
+  static const String getAllProducst = '$baseUrl/api/v1/products';
 }

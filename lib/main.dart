@@ -32,7 +32,9 @@ class MyApp extends StatelessWidget {
           create: ((context) => LoginCubit()),
         ),
         BlocProvider(
-          create: ((context) => GeneralCubit()..getMyData(accessToken)),
+          create: ((context) => GeneralCubit()
+            ..getMyData(accessToken)
+            ..getAllProudctsData(accessToken)),
         ),
       ],
       child: BlocConsumer<LoginCubit, LoginCubitStates>(

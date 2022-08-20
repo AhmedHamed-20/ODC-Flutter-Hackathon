@@ -5,7 +5,7 @@ import 'package:la_vie/model/network/end_points/end_points.dart';
 import 'package:la_vie/view_model/general_cubit/general_cubit.dart';
 import 'package:la_vie/view_model/general_cubit/general_cubit_states.dart';
 import '../../components/cart_blogs_design.dart';
-import '../../components/tob_tabe_buttons.dart';
+import '../../components/top_tabe_buttons.dart';
 import '../../constants/constants.dart';
 import 'blog_detailes.dart';
 
@@ -71,7 +71,7 @@ class BlogScreenMobile extends StatelessWidget {
                                 onTap: () {
                                   generalCubit.changeBlogsTabIndex(index);
                                 },
-                                child: tobTabButtons(
+                                child: topTabButtons(
                                   currentWidgetIndex: index,
                                   context: context,
                                   currentIndexColor:

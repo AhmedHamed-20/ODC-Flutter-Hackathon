@@ -8,6 +8,8 @@ class ChangeBottomNavIndex extends GeneralCubitStates {}
 
 class ChangeBlogsTabIndex extends GeneralCubitStates {}
 
+class ChangeHomeTabIndex extends GeneralCubitStates {}
+
 class BlogsDataGetSuccess extends GeneralCubitStates {}
 
 class BlogsDataGetError extends GeneralCubitStates {}
@@ -19,3 +21,9 @@ class LoadBlogsData extends GeneralCubitStates {}
 class UserDataGetSuccess extends GeneralCubitStates {}
 
 class UserDataGetError extends GeneralCubitStates {}
+
+class LoadAllProudctsData extends GeneralCubitStates {}
+
+class AllProudctsDataGetSuccess extends GeneralCubitStates {}
+
+class AllProudctsDataGetError extends GeneralCubitStates {}

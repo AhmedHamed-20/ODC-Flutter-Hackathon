@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:la_vie/view/constants/constants.dart';
 
-Widget tobTabButtons({
+Widget topTabButtons({
   required List tabs,
   required int currentIndexColor,
   required int currentWidgetIndex,

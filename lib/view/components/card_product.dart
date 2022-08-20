@@ -27,9 +27,14 @@ Widget cardProduct({
         children: [
           Positioned(
             left: -10,
-            top: -90,
-            child: Image.asset(
-              imageUrl,
+            top: -50,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(AppRadius.r10),
+              child: Image.network(
+                imageUrl,
+                fit: BoxFit.fitWidth,
+                width: AppWidth.w100,
+              ),
             ),
           ),
           Positioned(
