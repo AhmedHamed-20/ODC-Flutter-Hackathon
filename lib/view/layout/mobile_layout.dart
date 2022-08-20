@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
-import 'package:la_vie/view/screen/mobile_screens/home_screen_mobile.dart';
 import 'package:la_vie/view_model/general_cubit/general_cubit.dart';
 import 'package:la_vie/view_model/general_cubit/general_cubit_states.dart';
 
 import '../constants/constants.dart';
 
 import '../screen/mobile_screens/blog_screen_mobile.dart';
-import '../screen/mobile_screens/community_screen_mobile.dart';
 import '../screen/mobile_screens/scan_screen.dart';
 import '../screen/mobile_screens/user_profile_screen.dart';
 
@@ -55,7 +53,8 @@ class MobileLayout extends StatelessWidget {
                       navigateTO: const BlogScreenMobile(),
                       context: context,
                     );
-                    //  generalCubit.currentBottomNavIndex = 4;
+                    generalCubit.emitBlogsIntState();
+                    //    generalCubit.currentBottomNavIndex = 4;
                   },
                   icon: Image.asset(
                     'assets/images/fire.png',
@@ -66,7 +65,6 @@ class MobileLayout extends StatelessWidget {
                     navigatePushTo(
                         navigateTO: const ScanScreen(), context: context);
                     generalCubit.currentBottomNavIndex = 1;
-                    //  generalCubit.changeBottomNavIndex(1);
                   },
                   icon: Icon(
                     IconlyBroken.scan,

@@ -62,6 +62,7 @@ Widget defaultTextFormField({
 }
 
 Widget defaultButton({
+  Color? buttonColor,
   required VoidCallback onPressed,
   required Widget buttonChild,
   required double width,
@@ -72,7 +73,7 @@ Widget defaultButton({
     width: width,
     child: MaterialButton(
       onPressed: onPressed,
-      color: AppColors.buttonColor,
+      color: buttonColor ?? AppColors.buttonColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
           AppRadius.r5,

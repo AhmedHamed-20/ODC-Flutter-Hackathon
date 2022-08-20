@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:la_vie/model/cache/shared_preferences.dart';
 import 'package:la_vie/model/network/dio/dio.dart';
+import 'package:la_vie/view/constants/constants.dart';
 import 'package:la_vie/view/screen/mobile_screens/login_screen.dart';
 
 import 'package:la_vie/view/theme/app_theme.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
           create: ((context) => LoginCubit()),
         ),
         BlocProvider(
-          create: ((context) => GeneralCubit()),
+          create: ((context) => GeneralCubit()..getMyData(accessToken)),
         ),
       ],
       child: BlocConsumer<LoginCubit, LoginCubitStates>(
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
               builder: ((context, constraints) {
                 if (constraints.minWidth <= 824 ||
                     constraints.minHeight <= 412) {
-                  return const LoginScreen();
+                  return accessToken == '' ? LoginScreen() : MobileLayout();
                 }
                 return const LayoutScreenWeb();
               }),

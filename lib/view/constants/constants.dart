@@ -103,6 +103,8 @@ class AppWidth {
   static const double w20 = 20;
   static const double w22 = 22;
   static const double w44 = 44;
+  static const double w60 = 60;
+
   static const double w100 = 100;
   static const double w130 = 130;
 }

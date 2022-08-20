@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:la_vie/view/constants/constants.dart';
 
 class BlogDetailes extends StatelessWidget {
-  const BlogDetailes({Key? key}) : super(key: key);
-
+  final String photoUrl;
+  final String blogTitle;
+  final String blogDetailes;
+  const BlogDetailes(this.blogDetailes, this.blogTitle, this.photoUrl,
+      {Key? key})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +17,10 @@ class BlogDetailes extends StatelessWidget {
           Container(
             width: double.infinity,
             height: MediaQuery.of(context).size.height * 0.4,
-            child: Image.asset('assets/images/cart_empty.png'),
+            child: Image.network(
+              photoUrl,
+              fit: BoxFit.cover,
+            ),
           ),
           const SizedBox(
             height: AppHeight.h8,
@@ -21,7 +28,7 @@ class BlogDetailes extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(AppPadding.p12),
             child: Text(
-              'title',
+              blogTitle,
               style: Theme.of(context)
                   .textTheme
                   .titleLarge
@@ -34,7 +41,7 @@ class BlogDetailes extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(AppPadding.p16),
             child: Text(
-              'leaf, in botany, any usually flattened green outgrowth from the stem of  ',
+              blogDetailes,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontSize: AppFontSize.s18,
                   ),

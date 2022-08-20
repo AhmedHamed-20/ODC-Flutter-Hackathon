@@ -1,3 +1,5 @@
+import 'package:la_vie/model/network/end_points/end_points.dart';
+
 class BlogsDataModel {
   static List? plants;
   static List? seeds;
@@ -6,6 +8,16 @@ class BlogsDataModel {
     plants = blogsData['data']['plants'];
     seeds = blogsData['data']['seeds'];
     tools = blogsData['data']['tools'];
+  }
+
+  static List? getCurrentTabList(int index) {
+    if (index == 0) {
+      return plants;
+    } else if (index == 1) {
+      return seeds;
+    } else {
+      return tools;
+    }
   }
 
   static String getPlantId({required int index}) {
@@ -45,14 +57,23 @@ class BlogsDataModel {
   }
 
   static String getPlantPhoto({required int index}) {
-    return plants?[index]['imageUrl'];
+    if (plants?[index]['imageUrl'] == "") {
+      return 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
+    }
+    return EndPoints.baseUrl + plants?[index]['imageUrl'];
   }
 
   static String getSeedPhoto({required int index}) {
-    return seeds?[index]['imageUrl'];
+    if (seeds?[index]['imageUrl'] == "") {
+      return 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
+    }
+    return EndPoints.baseUrl + seeds?[index]['imageUrl'];
   }
 
   static String getToolsPhoto({required int index}) {
-    return tools?[index]['imageUrl'];
+    if (tools?[index]['imageUrl'] == "") {
+      return 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
+    }
+    return EndPoints.baseUrl + tools?[index]['imageUrl'];
   }
 }

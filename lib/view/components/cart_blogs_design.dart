@@ -19,7 +19,7 @@ Widget cartWithBlogsDesign({
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(AppRadius.r5),
               ),
-              child: Image.asset(
+              child: Image.network(
                 photoUrl,
                 fit: BoxFit.fill,
               ),
