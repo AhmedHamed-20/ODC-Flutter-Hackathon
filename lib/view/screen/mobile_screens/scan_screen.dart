@@ -32,7 +32,14 @@ class ScanScreen extends StatelessWidget {
                             isScrollControlled: true,
                             context: context,
                             builder: (context) {
-                              return modelBottomSheetScan(context: context);
+                              return modelBottomSheetScan(
+                                context: context,
+                                description: 'dd',
+                                sunLight: 15,
+                                temperature: 55,
+                                title: 'sda',
+                                waterCapacity: 555,
+                              );
                             });
                       },
                       child: Align(

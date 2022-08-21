@@ -17,4 +17,20 @@ class AllPlants {
   static int getPriceOfPlants(int index) {
     return allPlants?[index]['price'];
   }
+
+  static int getSunLightOfPlant(int index) {
+    return allPlants?[index]['plant']['sunLight'];
+  }
+
+  static int getTempOfPlant(int index) {
+    return allPlants?[index]['plant']['temperature'];
+  }
+
+  static int getWaterCapacityOfPlant(int index) {
+    return allPlants?[index]['plant']['waterCapacity'];
+  }
+
+  static String getDescriptionOfPlants(int index) {
+    return allPlants?[index]['plant']['description'];
+  }
 }

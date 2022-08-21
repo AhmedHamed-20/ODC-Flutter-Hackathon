@@ -214,6 +214,60 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
     }
   }
 
+  List getCharacteristicsofProudctBetweenModels(
+      int currentHometabIndex, int widgetIndex) {
+    switch (currentHometabIndex) {
+      case 0:
+        {
+          List characteristics = [0];
+          characteristics.add(
+            AllProductsModel.getSunLightOfProduct(widgetIndex),
+          );
+
+          characteristics.add(
+            AllProductsModel.getWaterCapacityOfProduct(widgetIndex),
+          );
+
+          characteristics.add(
+            AllProductsModel.getTemperatureOfProduct(widgetIndex),
+          );
+          characteristics.removeAt(0);
+          return characteristics;
+        }
+      case 1:
+        {
+          List characteristics = [0];
+          characteristics.add(
+            AllPlants.getSunLightOfPlant(widgetIndex),
+          );
+
+          characteristics.add(
+            AllPlants.getWaterCapacityOfPlant(widgetIndex),
+          );
+
+          characteristics.add(
+            AllPlants.getTempOfPlant(widgetIndex),
+          );
+          characteristics.removeAt(0);
+
+          return characteristics;
+        }
+      case 2:
+        {
+          return [25, 10, 10];
+        }
+
+      case 3:
+        {
+          return [25, 10, 10];
+        }
+      default:
+        {
+          return [25, 10, 10];
+        }
+    }
+  }
+
   String getPhotoofProudctBetweenModels(
       int currenthometabIndex, int widgetIndex) {
     switch (currenthometabIndex) {
@@ -236,6 +290,32 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
       default:
         {
           return 'https://media.istockphoto.com/vectors/default-image-icon-vector-missing-picture-page-for-website-design-or-vector-id1357365823?k=20&m=1357365823&s=612x612&w=0&h=ZH0MQpeUoSHM3G2AWzc8KkGYRg4uP_kuu0Za8GFxdFc=';
+        }
+    }
+  }
+
+  String getDecriptionofProudctBetweenModels(
+      int currenthometabIndex, int widgetIndex) {
+    switch (currenthometabIndex) {
+      case 0:
+        {
+          return AllProductsModel.getDescriptionOfProduct(widgetIndex);
+        }
+      case 1:
+        {
+          return AllPlants.getDescriptionOfPlants(widgetIndex);
+        }
+      case 2:
+        {
+          return AllSeeds.getDescriptionOfSeeds(widgetIndex);
+        }
+      case 3:
+        {
+          return AllTools.getDescriptionOfTools(widgetIndex);
+        }
+      default:
+        {
+          return 'temp';
         }
     }
   }

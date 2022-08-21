@@ -6,6 +6,7 @@ import 'package:la_vie/view/screen/mobile_screens/search_screen_mobile.dart';
 import 'package:la_vie/view_model/general_cubit/general_cubit.dart';
 import 'package:la_vie/view_model/general_cubit/general_cubit_states.dart';
 import '../../components/defaults.dart';
+import '../../components/model_bottom_sheet_scan_screen.dart';
 import '../../constants/constants.dart';
 import '../../constants/controllers.dart';
 import '../../components/card_product.dart';
@@ -126,19 +127,53 @@ class HomeScreenMobile extends StatelessWidget {
                           mainAxisSpacing: AppHeight.h80,
                         ),
                         itemBuilder: (context, index) {
-                          return cardProduct(
-                            context: context,
-                            addToCarCallBack: () {},
-                            amount: '1',
-                            imageUrl:
-                                generalCubit.getPhotoofProudctBetweenModels(
-                                    generalCubit.currentHomeTabIndex, index),
-                            minusCallBck: () {},
-                            plusCallBack: () {},
-                            subTitle:
-                                '${generalCubit.getPriceofProudctBetweenModels(generalCubit.currentHomeTabIndex, index)} EGP',
-                            title: generalCubit.getNameOProudctBetweenModels(
-                                generalCubit.currentHomeTabIndex, index),
+                          return GestureDetector(
+                            onTap: () {
+                              showModalBottomSheet(
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (context) {
+                                  return modelBottomSheetScan(
+                                    context: context,
+                                    title: generalCubit
+                                        .getNameOProudctBetweenModels(
+                                      generalCubit.currentHomeTabIndex,
+                                      index,
+                                    ),
+                                    sunLight: generalCubit
+                                        .getCharacteristicsofProudctBetweenModels(
+                                            generalCubit.currentHomeTabIndex,
+                                            index)[0],
+                                    waterCapacity: generalCubit
+                                        .getCharacteristicsofProudctBetweenModels(
+                                            generalCubit.currentHomeTabIndex,
+                                            index)[1],
+                                    temperature: generalCubit
+                                        .getCharacteristicsofProudctBetweenModels(
+                                            generalCubit.currentHomeTabIndex,
+                                            index)[2],
+                                    description: generalCubit
+                                        .getDecriptionofProudctBetweenModels(
+                                            generalCubit.currentBlogTabIndex,
+                                            index),
+                                  );
+                                },
+                              );
+                            },
+                            child: cardProduct(
+                              context: context,
+                              addToCarCallBack: () {},
+                              amount: '1',
+                              imageUrl:
+                                  generalCubit.getPhotoofProudctBetweenModels(
+                                      generalCubit.currentHomeTabIndex, index),
+                              minusCallBck: () {},
+                              plusCallBack: () {},
+                              subTitle:
+                                  '${generalCubit.getPriceofProudctBetweenModels(generalCubit.currentHomeTabIndex, index)} EGP',
+                              title: generalCubit.getNameOProudctBetweenModels(
+                                  generalCubit.currentHomeTabIndex, index),
+                            ),
                           );
                         },
                         itemCount: generalCubit.getLengthOfEachmodel(

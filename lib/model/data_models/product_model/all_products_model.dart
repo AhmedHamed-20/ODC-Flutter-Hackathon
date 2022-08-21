@@ -93,9 +93,9 @@ class AllProductsModel {
     if (allProdcutsData?[index]['type'] == 'PLANT') {
       return allProdcutsData?[index]['plant']['waterCapacity'];
     } else if (allProdcutsData?[index]['type'] == 'SEED') {
-      return allProdcutsData?[index]['seed']['waterCapacity'];
+      return allProdcutsData?[index]['seed']['waterCapacity'] ?? 5;
     } else {
-      return allProdcutsData?[index]['tool']['waterCapacity'];
+      return allProdcutsData?[index]['tool']['waterCapacity'] ?? 5;
     }
   }
 
@@ -103,9 +103,9 @@ class AllProductsModel {
     if (allProdcutsData?[index]['type'] == 'PLANT') {
       return allProdcutsData?[index]['plant']['sunLight'];
     } else if (allProdcutsData?[index]['type'] == 'SEED') {
-      return allProdcutsData?[index]['seed']['sunLight'];
+      return allProdcutsData?[index]['seed']['sunLight'] ?? 5;
     } else {
-      return allProdcutsData?[index]['tool']['sunLight'];
+      return allProdcutsData?[index]['tool']['sunLight'] ?? 5;
     }
   }
 
@@ -113,9 +113,9 @@ class AllProductsModel {
     if (allProdcutsData?[index]['type'] == 'PLANT') {
       return allProdcutsData?[index]['plant']['temperature'];
     } else if (allProdcutsData?[index]['type'] == 'SEED') {
-      return allProdcutsData?[index]['seed']['temperature'];
+      return allProdcutsData?[index]['seed']['temperature'] ?? 5;
     } else {
-      return allProdcutsData?[index]['tool']['temperature'];
+      return allProdcutsData?[index]['tool']['temperature'] ?? 5;
     }
   }
 }

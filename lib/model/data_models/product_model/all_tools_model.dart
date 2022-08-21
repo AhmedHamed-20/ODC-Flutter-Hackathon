@@ -17,4 +17,8 @@ class AllTools {
   static int getPriceOfTools(int index) {
     return allTools?[index]['price'];
   }
+
+  static String getDescriptionOfTools(int index) {
+    return allTools?[index]['tool']['description'];
+  }
 }

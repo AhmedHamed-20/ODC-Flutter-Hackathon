@@ -17,4 +17,8 @@ class AllSeeds {
   static int getPriceOfSeed(int index) {
     return allSeeds?[index]['price'];
   }
+
+  static String getDescriptionOfSeeds(int index) {
+    return allSeeds?[index]['seed']['description'];
+  }
 }

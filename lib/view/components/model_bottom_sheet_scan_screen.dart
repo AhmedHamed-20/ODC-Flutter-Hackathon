@@ -3,7 +3,15 @@ import 'package:flutter/material.dart';
 import 'defaults.dart';
 import '../constants/constants.dart';
 
-Widget modelBottomSheetScan({required BuildContext context}) {
+Widget modelBottomSheetScan({
+  required BuildContext context,
+  required String title,
+  required String description,
+  String? additiontalDescription,
+  required int temperature,
+  required int waterCapacity,
+  required int sunLight,
+}) {
   return SizedBox(
     height: MediaQuery.of(context).size.height,
     child: Column(
@@ -19,16 +27,17 @@ Widget modelBottomSheetScan({required BuildContext context}) {
               child: Padding(
                 padding: const EdgeInsets.all(AppPadding.p18),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Card(
                           color: Colors.black.withOpacity(0.6),
                           child: Padding(
                             padding: const EdgeInsets.all(AppPadding.p8),
                             child: Icon(
-                              Icons.home,
+                              Icons.wb_sunny_outlined,
                               color: AppColors.iconColorGrey,
                             ),
                           ),
@@ -37,7 +46,49 @@ Widget modelBottomSheetScan({required BuildContext context}) {
                           width: AppWidth.w8,
                         ),
                         Text(
-                          '25 %',
+                          '$sunLight % \nSun Light',
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Card(
+                          color: Colors.black.withOpacity(0.6),
+                          child: Padding(
+                            padding: const EdgeInsets.all(AppPadding.p8),
+                            child: Icon(
+                              Icons.water_drop_outlined,
+                              color: AppColors.iconColorGrey,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: AppWidth.w8,
+                        ),
+                        Text(
+                          '$waterCapacity % \nWater Capacity',
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Card(
+                          color: Colors.black.withOpacity(0.6),
+                          child: Padding(
+                            padding: const EdgeInsets.all(AppPadding.p8),
+                            child: Icon(
+                              Icons.device_thermostat,
+                              color: AppColors.iconColorGrey,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: AppWidth.w8,
+                        ),
+                        Text(
+                          '$temperature c \nTemperature',
                           style: Theme.of(context).textTheme.labelMedium,
                         ),
                       ],
@@ -78,21 +129,28 @@ Widget modelBottomSheetScan({required BuildContext context}) {
                           Padding(
                             padding: const EdgeInsets.all(AppPadding.p6),
                             child: Text(
-                              'SNAKE PLANT (SANSEVIERIA)',
-                              style: Theme.of(context).textTheme.titleLarge,
+                              title,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(fontSize: AppFontSize.s20),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(AppPadding.p6),
                             child: Text(
-                              'Native to southern Africa, snake plants are well adapted to conditions similar to those in southern regions of the United States. Because of this, they may be grown outdoors for part of all of the year in USDA zones 8 and warmer',
-                              style: Theme.of(context).textTheme.subtitle1,
+                              description,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .subtitle1
+                                  ?.copyWith(color: AppColors.iconColorGrey),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(AppPadding.p6),
                             child: Text(
-                              'Native to southern Africa, snake plants are well adapted to conditions similar to those in southern regions of the United States. Because of this, they may be grown outdoors for part of all of the year in USDA zones 8 and warmer',
+                              additiontalDescription ??
+                                  'Native to southern Africa, snake plants are well adapted to conditions similar to those in southern regions of the United States. Because of this, they may be grown outdoors for part of all of the year in USDA zones 8 and warmer',
                               style: Theme.of(context).textTheme.subtitle1,
                             ),
                           ),
