@@ -7,7 +7,7 @@ import '../screen/web_screens/community_screen_web.dart';
 import '../screen/web_screens/home_screen_web.dart';
 import '../screen/web_screens/shop_screen_web.dart';
 
-String accessToken = CacheHelper.getData(key: 'accessToken');
+String accessToken = CacheHelper.getData(key: 'accessToken') ?? '';
 
 class AppFontSize {
   static const double s10 = 10;

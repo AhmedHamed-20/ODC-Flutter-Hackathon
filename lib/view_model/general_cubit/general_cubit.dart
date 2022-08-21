@@ -6,8 +6,10 @@ import 'package:la_vie/model/data_models/product_model/all_tools_model.dart';
 import 'package:la_vie/model/data_models/product_model/plants_product_model.dart';
 import 'package:la_vie/model/network/dio/dio.dart';
 import 'package:la_vie/model/network/end_points/end_points.dart';
+import 'package:la_vie/model/qr_code_scan/qr_code_model.dart';
 import 'package:la_vie/view/screen/mobile_screens/blog_screen_mobile.dart';
 import 'package:la_vie/view/screen/mobile_screens/user_profile_screen.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 import '../../../view/screen/mobile_screens/home_screen_mobile.dart';
 import '../../../view/screen/mobile_screens/notification_screen_mobile.dart';
@@ -493,5 +495,16 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
     totoalCardPrice -= CardModel.getAmount(index) * CardModel.getPrice(index);
     CardModel.removeDataFromCardAtIndex(index);
     emit(RemoveDataFromCard());
+  }
+
+  Barcode? result;
+  QRViewController? qrcontroller;
+  void onQRViewCreated(QRViewController controller) {
+    qrcontroller = controller;
+    controller.scannedDataStream.listen((scanData) {
+      result = scanData;
+      print(QrCodeHelper.result?.code);
+      emit(SetDataToCard());
+    });
   }
 }
