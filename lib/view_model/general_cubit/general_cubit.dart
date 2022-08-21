@@ -468,4 +468,30 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
 
     emit(SetDataToCard());
   }
+
+  void changeAmountInCard(int index, bool isReduce) {
+    if (CardModel.getAmount(index) == 1 && isReduce == true) {
+      print('iam out');
+      return;
+    }
+    if (isReduce == true) {
+      int reduce = 0;
+      reduce--;
+      CardModel.setDataToAmount(index, reduce);
+      totoalCardPrice += reduce * CardModel.getPrice(index);
+      emit(SetDataToCard());
+    } else if (isReduce == false) {
+      int incremnet = 0;
+      incremnet++;
+      CardModel.setDataToAmount(index, incremnet);
+      totoalCardPrice += incremnet * CardModel.getPrice(index);
+      emit(SetDataToCard());
+    }
+  }
+
+  void removeDataFromCard(int index) {
+    totoalCardPrice -= CardModel.getAmount(index) * CardModel.getPrice(index);
+    CardModel.removeDataFromCardAtIndex(index);
+    emit(RemoveDataFromCard());
+  }
 }

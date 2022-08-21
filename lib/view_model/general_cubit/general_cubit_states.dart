@@ -31,3 +31,5 @@ class AllProudctsDataGetError extends GeneralCubitStates {}
 class ChangeCartCountNumber extends GeneralCubitStates {}
 
 class SetDataToCard extends GeneralCubitStates {}
+
+class RemoveDataFromCard extends GeneralCubitStates {}

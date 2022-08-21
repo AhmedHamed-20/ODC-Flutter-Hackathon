@@ -31,4 +31,12 @@ class CardModel {
   static int getAmount(int index) {
     return cartData[index]['amount'];
   }
+
+  static void setDataToAmount(int index, int data) {
+    cartData[index]['amount'] += data;
+  }
+
+  static void removeDataFromCardAtIndex(int index) {
+    cartData.removeAt(index);
+  }
 }

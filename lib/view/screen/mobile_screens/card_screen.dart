@@ -16,6 +16,7 @@ class CartScreen extends StatelessWidget {
     return BlocConsumer<GeneralCubit, GeneralCubitStates>(
       builder: (context, state) {
         var generalCubit = GeneralCubit.get(context);
+        print(CardModel.cartData.isEmpty);
         return Scaffold(
           appBar: AppBar(
             title: Text(
@@ -35,7 +36,7 @@ class CartScreen extends StatelessWidget {
               },
             ),
           ),
-          body: CardModel.cartData.elementAt(0) == 0
+          body: CardModel.cartData.isEmpty
               ? Column(
                   children: [
                     SizedBox(
@@ -117,7 +118,11 @@ class CartScreen extends StatelessWidget {
                                           child: Row(
                                             children: [
                                               InkWell(
-                                                onTap: () {},
+                                                onTap: () {
+                                                  generalCubit
+                                                      .changeAmountInCard(
+                                                          index, true);
+                                                },
                                                 child: Icon(
                                                   Icons.remove,
                                                   color: Theme.of(context)
@@ -138,7 +143,11 @@ class CartScreen extends StatelessWidget {
                                                 width: AppWidth.w2,
                                               ),
                                               InkWell(
-                                                onTap: () {},
+                                                onTap: () {
+                                                  generalCubit
+                                                      .changeAmountInCard(
+                                                          index, false);
+                                                },
                                                 child: Icon(
                                                   Icons.add,
                                                   color: Theme.of(context)
@@ -150,7 +159,10 @@ class CartScreen extends StatelessWidget {
                                         ),
                                       ),
                                       InkWell(
-                                        onTap: () {},
+                                        onTap: () {
+                                          generalCubit
+                                              .removeDataFromCard(index);
+                                        },
                                         child: Icon(
                                           Icons.delete,
                                           color: Theme.of(context).primaryColor,
