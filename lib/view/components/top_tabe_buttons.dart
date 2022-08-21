@@ -13,20 +13,24 @@ Widget topTabButtons({
       width: AppWidth.w60,
       height: AppHeight.h70,
       decoration: BoxDecoration(
-        color: currentIndexColor == tabs.indexOf(tabs[currentWidgetIndex])
-            ? AppColors.buttonColor
-            : AppColors.scaffoldBackgroundColor,
+        borderRadius: BorderRadius.circular(
+          AppRadius.r10,
+        ),
+        color: AppColors.textFormFieldFillColor,
         border: Border.all(
           color: currentIndexColor == currentWidgetIndex
               ? AppColors.buttonColor
-              : AppColors.textFieldBorderColorGrey,
+              : AppColors.iconColorWhite,
         ),
       ),
       child: Center(
         child: Text(
           tabs[currentWidgetIndex],
           style: currentIndexColor == tabs.indexOf(tabs[currentWidgetIndex])
-              ? Theme.of(context).textTheme.labelMedium
+              ? Theme.of(context)
+                  .textTheme
+                  .labelMedium
+                  ?.copyWith(color: Theme.of(context).primaryColor)
               : Theme.of(context).textTheme.titleMedium,
         ),
       ),

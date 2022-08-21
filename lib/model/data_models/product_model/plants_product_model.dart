@@ -33,4 +33,16 @@ class AllPlants {
   static String getDescriptionOfPlants(int index) {
     return allPlants?[index]['plant']['description'];
   }
+
+  static String getPlantId(int index) {
+    return allPlants?[index]['plant']['plantId'];
+  }
+
+  static int getPlantsAmount(int index) {
+    return allPlants?[index]['plant']['amount'];
+  }
+
+  static void setNewValueForAmount(int newValue, int index) {
+    allPlants?[index]['plant']['amount'] = newValue;
+  }
 }

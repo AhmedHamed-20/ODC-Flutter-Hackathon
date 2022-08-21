@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import '../constants/constants.dart';
 
 Widget cardProduct({
+  required int index,
   required BuildContext context,
   required String imageUrl,
   required String title,
   required String subTitle,
   required String amount,
-  required VoidCallback addToCarCallBack,
+  required VoidCallback addToCartCallBack,
   required VoidCallback plusCallBack,
   required VoidCallback minusCallBck,
 }) {
@@ -90,7 +91,7 @@ Widget cardProduct({
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(AppRadius.r5),
                     ),
-                    onPressed: addToCarCallBack,
+                    onPressed: addToCartCallBack,
                     child: Text(
                       'Add To Cart',
                       style: Theme.of(context).textTheme.labelMedium,

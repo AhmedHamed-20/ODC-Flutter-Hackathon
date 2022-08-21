@@ -21,4 +21,16 @@ class AllSeeds {
   static String getDescriptionOfSeeds(int index) {
     return allSeeds?[index]['seed']['description'];
   }
+
+  static String getSeedId(int index) {
+    return allSeeds?[index]['seed']['seedId'];
+  }
+
+  static int getSeedsAmount(int index) {
+    return allSeeds?[index]['seed']['amount'];
+  }
+
+  static void setNewValueForAmount(int newValue, int index) {
+    allSeeds?[index]['seed']['amount'] = newValue;
+  }
 }

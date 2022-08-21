@@ -5,12 +5,13 @@ import 'package:la_vie/view/components/top_tabe_buttons.dart';
 import 'package:la_vie/view/screen/mobile_screens/search_screen_mobile.dart';
 import 'package:la_vie/view_model/general_cubit/general_cubit.dart';
 import 'package:la_vie/view_model/general_cubit/general_cubit_states.dart';
+import '../../../model/data_models/cart_model/cart_model.dart';
 import '../../components/defaults.dart';
 import '../../components/model_bottom_sheet_scan_screen.dart';
 import '../../constants/constants.dart';
 import '../../constants/controllers.dart';
 import '../../components/card_product.dart';
-import 'cart_screen.dart';
+import 'card_screen.dart';
 
 class HomeScreenMobile extends StatelessWidget {
   const HomeScreenMobile({Key? key}) : super(key: key);
@@ -161,14 +162,45 @@ class HomeScreenMobile extends StatelessWidget {
                               );
                             },
                             child: cardProduct(
+                              index: index,
                               context: context,
-                              addToCarCallBack: () {},
-                              amount: '1',
+                              addToCartCallBack: () {
+                                generalCubit.addToCard({
+                                  'proudctId': generalCubit.getIdBetweenModles(
+                                      generalCubit.currentHomeTabIndex, index),
+                                  'name':
+                                      generalCubit.getNameOProudctBetweenModels(
+                                          generalCubit.currentHomeTabIndex,
+                                          index),
+                                  'price': generalCubit
+                                      .getPriceofProudctBetweenModels(
+                                          generalCubit.currentHomeTabIndex,
+                                          index),
+                                  'imageUrl': generalCubit
+                                      .getPhotoofProudctBetweenModels(
+                                          generalCubit.currentHomeTabIndex,
+                                          index),
+                                  'amount': generalCubit.getAmountBetweenModles(
+                                      generalCubit.currentHomeTabIndex, index),
+                                });
+                              },
+                              amount: generalCubit
+                                  .getAmountBetweenModles(
+                                      generalCubit.currentHomeTabIndex, index)
+                                  .toString(),
                               imageUrl:
                                   generalCubit.getPhotoofProudctBetweenModels(
                                       generalCubit.currentHomeTabIndex, index),
-                              minusCallBck: () {},
-                              plusCallBack: () {},
+                              minusCallBck: () {
+                                //true to reduce number
+                                generalCubit.changeCartCountNumber(true,
+                                    generalCubit.currentHomeTabIndex, index);
+                              },
+                              plusCallBack: () {
+                                // false to incremnet number
+                                generalCubit.changeCartCountNumber(false,
+                                    generalCubit.currentHomeTabIndex, index);
+                              },
                               subTitle:
                                   '${generalCubit.getPriceofProudctBetweenModels(generalCubit.currentHomeTabIndex, index)} EGP',
                               title: generalCubit.getNameOProudctBetweenModels(

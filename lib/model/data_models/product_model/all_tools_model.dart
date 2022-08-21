@@ -21,4 +21,16 @@ class AllTools {
   static String getDescriptionOfTools(int index) {
     return allTools?[index]['tool']['description'];
   }
+
+  static int getToolsAmount(int index) {
+    return allTools?[index]['tool']['amount'];
+  }
+
+  static String getToolId(int index) {
+    return allTools?[index]['tool']['toolId'];
+  }
+
+  static void setNewValueForAmount(int newValue, int index) {
+    allTools?[index]['tool']['amount'] = newValue;
+  }
 }

@@ -16,12 +16,28 @@ class AllProductsModel {
     allProdcutsData?.forEach(
       (element) {
         if (element['type'] == 'SEED') {
-          allSeeds?.add({'seed': element['seed'], 'price': element['price']});
+          element['seed'].addAll({'amount': 1});
+          allSeeds?.add({
+            'seed': element['seed'],
+            'price': element['price'],
+            'amount': 1
+          });
         } else if (element['type'] == 'PLANT') {
-          allPlants
-              ?.add({'plant': element['plant'], 'price': element['price']});
+          element['plant'].addAll({'amount': 1});
+
+          allPlants?.add({
+            'plant': element['plant'],
+            'price': element['price'],
+            'amount': 1
+          });
         } else {
-          allTools?.add({'tool': element['tool'], 'price': element['price']});
+          element['tool'].addAll({'amount': 1});
+
+          allTools?.add({
+            'tool': element['tool'],
+            'price': element['price'],
+            'amount': 1
+          });
         }
       },
     );
@@ -116,6 +132,26 @@ class AllProductsModel {
       return allProdcutsData?[index]['seed']['temperature'] ?? 5;
     } else {
       return allProdcutsData?[index]['tool']['temperature'] ?? 5;
+    }
+  }
+
+  static int getAllProudctsAmount(int index) {
+    if (allProdcutsData?[index]['type'] == 'PLANT') {
+      return allProdcutsData?[index]['plant']['amount'];
+    } else if (allProdcutsData?[index]['type'] == 'SEED') {
+      return allProdcutsData?[index]['seed']['amount'] ?? 1;
+    } else {
+      return allProdcutsData?[index]['tool']['amount'] ?? 1;
+    }
+  }
+
+  static void setNevValueForAmount(int newValue, int index) {
+    if (allProdcutsData?[index]['type'] == 'PLANT') {
+      allProdcutsData?[index]['plant']['amount'] = newValue;
+    } else if (allProdcutsData?[index]['type'] == 'SEED') {
+      allProdcutsData?[index]['seed']['amount'] = newValue;
+    } else {
+      allProdcutsData?[index]['tool']['amount'] = newValue;
     }
   }
 }

@@ -13,6 +13,7 @@ import '../../../view/screen/mobile_screens/home_screen_mobile.dart';
 import '../../../view/screen/mobile_screens/notification_screen_mobile.dart';
 import '../../../view/screen/mobile_screens/scan_screen.dart';
 import '../../model/data_models/blogs/blogs_data_model.dart';
+import '../../model/data_models/cart_model/cart_model.dart';
 import '../../model/data_models/get_my_data_model/get_my_data_model.dart';
 import '../../model/data_models/product_model/seeds_product_mode.dart';
 import 'general_cubit_states.dart';
@@ -24,10 +25,12 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
   int currentBottomNavIndex = 0;
   int currentBlogTabIndex = 0;
   int currentHomeTabIndex = 0;
+  int cartCount = 1;
   bool loadAllProudctsData = false;
   bool loadBlogsData = false;
   List blogsTabs = ['Plants', 'Seeds', 'Tools'];
   List homeTabs = ['All', 'Plants', 'Seeds', 'Tools'];
+  num totoalCardPrice = 0;
 
 //////////////////func//////////////......................
 
@@ -38,6 +41,90 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
     UserProfileScreen(),
     BlogScreenMobile(),
   ];
+
+  void changeCartCountNumber(
+      bool isReduce, int currentHometabIndex, int currentwidgetIndex) {
+    switch (currentHometabIndex) {
+      case 0:
+        {
+          cartCount = AllProductsModel.getAllProudctsAmount(currentwidgetIndex);
+
+          if (isReduce) {
+            cartCount--;
+            AllProductsModel.setNevValueForAmount(
+                cartCount, currentwidgetIndex);
+            if (AllProductsModel.getAllProudctsAmount(currentwidgetIndex) < 1) {
+              cartCount = 1;
+              AllProductsModel.setNevValueForAmount(
+                  cartCount, currentwidgetIndex);
+            }
+            emit(ChangeCartCountNumber());
+          } else {
+            cartCount++;
+            AllProductsModel.setNevValueForAmount(
+                cartCount, currentwidgetIndex);
+            emit(ChangeCartCountNumber());
+          }
+        }
+        break;
+      case 1:
+        {
+          cartCount = AllPlants.getPlantsAmount(currentwidgetIndex);
+
+          if (isReduce) {
+            cartCount--;
+            AllPlants.setNewValueForAmount(cartCount, currentwidgetIndex);
+            if (AllPlants.getPlantsAmount(currentwidgetIndex) < 1) {
+              cartCount = 1;
+              AllPlants.setNewValueForAmount(cartCount, currentwidgetIndex);
+            }
+            emit(ChangeCartCountNumber());
+          } else {
+            cartCount++;
+            AllPlants.setNewValueForAmount(cartCount, currentwidgetIndex);
+            emit(ChangeCartCountNumber());
+          }
+        }
+        break;
+      case 2:
+        {
+          cartCount = AllSeeds.getSeedsAmount(currentwidgetIndex);
+
+          if (isReduce) {
+            cartCount--;
+            AllSeeds.setNewValueForAmount(cartCount, currentwidgetIndex);
+            if (AllSeeds.getSeedsAmount(currentwidgetIndex) < 1) {
+              cartCount = 1;
+              AllSeeds.setNewValueForAmount(cartCount, currentwidgetIndex);
+            }
+            emit(ChangeCartCountNumber());
+          } else {
+            cartCount++;
+            AllSeeds.setNewValueForAmount(cartCount, currentwidgetIndex);
+            emit(ChangeCartCountNumber());
+          }
+        }
+        break;
+      case 3:
+        {
+          cartCount = AllTools.getToolsAmount(currentwidgetIndex);
+
+          if (isReduce) {
+            cartCount--;
+            AllTools.setNewValueForAmount(cartCount, currentwidgetIndex);
+            if (AllTools.getToolsAmount(currentwidgetIndex) < 1) {
+              cartCount = 1;
+              AllTools.setNewValueForAmount(cartCount, currentwidgetIndex);
+            }
+            emit(ChangeCartCountNumber());
+          } else {
+            cartCount++;
+            AllTools.setNewValueForAmount(cartCount, currentwidgetIndex);
+            emit(ChangeCartCountNumber());
+          }
+        }
+    }
+  }
 
   void changeBottomNavIndex(int index) {
     currentBottomNavIndex = index;
@@ -318,5 +405,67 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
           return 'temp';
         }
     }
+  }
+
+  int getAmountBetweenModles(int currenthometabIndex, int widgetIndex) {
+    switch (currenthometabIndex) {
+      case 0:
+        {
+          return AllProductsModel.getAllProudctsAmount(widgetIndex);
+        }
+      case 1:
+        {
+          return AllPlants.getPlantsAmount(widgetIndex);
+        }
+      case 2:
+        {
+          return AllSeeds.getSeedsAmount(widgetIndex);
+        }
+      case 3:
+        {
+          return AllTools.getToolsAmount(widgetIndex);
+        }
+      default:
+        {
+          return 1;
+        }
+    }
+  }
+
+  String getIdBetweenModles(int currenthometabIndex, int widgetIndex) {
+    switch (currenthometabIndex) {
+      case 0:
+        {
+          return AllProductsModel.getIdOfProduct(widgetIndex);
+        }
+      case 1:
+        {
+          return AllPlants.getPlantId(widgetIndex);
+        }
+      case 2:
+        {
+          return AllSeeds.getSeedId(widgetIndex);
+        }
+      case 3:
+        {
+          return AllTools.getToolId(widgetIndex);
+        }
+      default:
+        {
+          return 'temp';
+        }
+    }
+  }
+
+  void changeCardState() {
+    emit(SetDataToCard());
+  }
+
+  void addToCard(Map<String, dynamic> cardData) {
+    CardModel.setDataToCard(cardData);
+    CardModel.getCardData();
+    totoalCardPrice += cardData["price"] * cardData['amount'];
+
+    emit(SetDataToCard());
   }
 }

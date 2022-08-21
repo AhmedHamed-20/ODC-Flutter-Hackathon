@@ -27,3 +27,7 @@ class LoadAllProudctsData extends GeneralCubitStates {}
 class AllProudctsDataGetSuccess extends GeneralCubitStates {}
 
 class AllProudctsDataGetError extends GeneralCubitStates {}
+
+class ChangeCartCountNumber extends GeneralCubitStates {}
+
+class SetDataToCard extends GeneralCubitStates {}
