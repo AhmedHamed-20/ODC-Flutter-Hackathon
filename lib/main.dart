@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:la_vie/model/cache/shared_preferences.dart';
 import 'package:la_vie/model/network/dio/dio.dart';
 import 'package:la_vie/view/constants/constants.dart';
+import 'package:la_vie/view/screen/mobile_screens/community_screen_mobile.dart';
 import 'package:la_vie/view/screen/mobile_screens/login_screen.dart';
 
 import 'package:la_vie/view/theme/app_theme.dart';
+import 'package:la_vie/view_model/forums_cubit/forums_cubit.dart';
 
 import 'view/layout/mobile_layout.dart';
 import 'view/layout/web_layout.dart';
@@ -33,8 +35,11 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: ((context) => GeneralCubit()
-            ..getMyData(accessToken)
+            ..getMyData(accessToken, context)
             ..getAllProudctsData(accessToken)),
+        ),
+        BlocProvider(
+          create: ((context) => ForumsCubit()),
         ),
       ],
       child: BlocConsumer<LoginCubit, LoginCubitStates>(

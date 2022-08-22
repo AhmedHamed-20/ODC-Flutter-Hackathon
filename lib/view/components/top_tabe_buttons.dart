@@ -10,7 +10,7 @@ Widget topTabButtons({
   return Padding(
     padding: const EdgeInsets.all(AppPadding.p8),
     child: Container(
-      width: AppWidth.w60,
+      // width: AppWidth.w,
       height: AppHeight.h70,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(
@@ -23,15 +23,18 @@ Widget topTabButtons({
               : AppColors.iconColorWhite,
         ),
       ),
-      child: Center(
-        child: Text(
-          tabs[currentWidgetIndex],
-          style: currentIndexColor == tabs.indexOf(tabs[currentWidgetIndex])
-              ? Theme.of(context)
-                  .textTheme
-                  .labelMedium
-                  ?.copyWith(color: Theme.of(context).primaryColor)
-              : Theme.of(context).textTheme.titleMedium,
+      child: Padding(
+        padding: const EdgeInsets.all(AppPadding.p8),
+        child: Center(
+          child: Text(
+            tabs[currentWidgetIndex],
+            style: currentIndexColor == tabs.indexOf(tabs[currentWidgetIndex])
+                ? Theme.of(context)
+                    .textTheme
+                    .labelMedium
+                    ?.copyWith(color: Theme.of(context).primaryColor)
+                : Theme.of(context).textTheme.titleMedium,
+          ),
         ),
       ),
     ),

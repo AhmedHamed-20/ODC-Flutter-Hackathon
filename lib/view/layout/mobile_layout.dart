@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
+import 'package:la_vie/view/screen/mobile_screens/community_screen_mobile.dart';
+import 'package:la_vie/view_model/forums_cubit/forums_cubit.dart';
+import 'package:la_vie/view_model/forums_cubit/forums_state.dart';
 import 'package:la_vie/view_model/general_cubit/general_cubit.dart';
 import 'package:la_vie/view_model/general_cubit/general_cubit_states.dart';
 
@@ -32,6 +35,28 @@ class MobileLayout extends StatelessWidget {
             ),
           ),
           appBar: AppBar(
+            actions: [
+              BlocConsumer<ForumsCubit, ForumsCubitStates>(
+                builder: (context, state) {
+                  var forumsCubit = ForumsCubit.get(context);
+
+                  return IconButton(
+                    onPressed: () {
+                      forumsCubit.getForumsMe(accessToken);
+                      forumsCubit.getAllForums(accessToken);
+                      navigatePushTo(
+                          navigateTO: CommunityScreenMobile(),
+                          context: context);
+                    },
+                    icon: Icon(
+                      Icons.forum,
+                      color: AppColors.iconColorGrey,
+                    ),
+                  );
+                },
+                listener: (context, state) {},
+              ),
+            ],
             backgroundColor: AppColors.transparentColor,
             elevation: AppElevation.eL0,
             title: appBarWidgets(context, generalCubit.currentBottomNavIndex),

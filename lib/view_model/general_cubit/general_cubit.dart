@@ -1,13 +1,17 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:la_vie/model/cache/shared_preferences.dart';
 import 'package:la_vie/model/data_models/product_model/all_products_model.dart';
 import 'package:la_vie/model/data_models/product_model/all_tools_model.dart';
 import 'package:la_vie/model/data_models/product_model/plants_product_model.dart';
 import 'package:la_vie/model/network/dio/dio.dart';
 import 'package:la_vie/model/network/end_points/end_points.dart';
 import 'package:la_vie/model/qr_code_scan/qr_code_model.dart';
+import 'package:la_vie/view/components/alert_dialog.dart';
+import 'package:la_vie/view/constants/constants.dart';
 import 'package:la_vie/view/screen/mobile_screens/blog_screen_mobile.dart';
+import 'package:la_vie/view/screen/mobile_screens/login_screen.dart';
 import 'package:la_vie/view/screen/mobile_screens/user_profile_screen.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
@@ -33,7 +37,7 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
   List blogsTabs = ['Plants', 'Seeds', 'Tools'];
   List homeTabs = ['All', 'Plants', 'Seeds', 'Tools'];
   num totoalCardPrice = 0;
-
+  bool tokenExpired = false;
 //////////////////func//////////////......................
 
   List<Widget> screens = const [
@@ -171,7 +175,7 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
     });
   }
 
-  Future getMyData(String accessToken) async {
+  Future getMyData(String accessToken, BuildContext context) async {
     return await DioHelper.getData(
       url: EndPoints.getMe,
       headers: {
@@ -182,16 +186,29 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
       (value) {
         print(value);
         GetMyDataModel.storeMyData(value.data);
+        //  CacheHelper.setData(key: 'accessToken',value: GetMyDataModel.)
         emit(UserDataGetSuccess());
       },
     ).catchError(
       (onError) {
         if (onError is DioError) {
+          if (onError.response?.statusCode == 401) {
+            tokenExpired = true;
+
+            getMyData(
+                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzQwMjkwNC00MzMxLTRkOGEtODRmOC1hOGVkNjRjMjVmM2IiLCJyZWZyZXNoIjp0cnVlLCJpYXQiOjE2NjExNzk3NDEsImV4cCI6MTY2MTc4NDU0MX0.V4125fNJUVA6cJwJNcVy1eLOQIFyU16TnuscuhdTFXo',
+                context);
+          }
           print(onError.response);
           emit(UserDataGetError());
         }
       },
     );
+  }
+
+  void logOut(BuildContext context) {
+    navigatePushAndRemove(navigateTO: LoginScreen(), context: context);
+    CacheHelper.removeData('accessToken');
   }
 
   Future getAllProudctsData(String accessToken) async {
@@ -213,7 +230,7 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
     ).catchError(
       (onError) {
         if (onError is DioError) {
-          loadAllProudctsData = false;
+          //   loadAllProudctsData = false;
           print(onError.response);
           emit(AllProudctsDataGetError());
         }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:la_vie/model/data_models/blogs/blogs_data_model.dart';
-import 'package:la_vie/model/network/end_points/end_points.dart';
 import 'package:la_vie/view_model/general_cubit/general_cubit.dart';
 import 'package:la_vie/view_model/general_cubit/general_cubit_states.dart';
 import '../../components/cart_blogs_design.dart';
@@ -62,7 +61,7 @@ class BlogScreenMobile extends StatelessWidget {
                     children: [
                       SizedBox(
                         width: MediaQuery.of(context).size.width,
-                        height: AppHeight.h46,
+                        height: AppHeight.h70,
                         child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemCount: generalCubit.blogsTabs.length,

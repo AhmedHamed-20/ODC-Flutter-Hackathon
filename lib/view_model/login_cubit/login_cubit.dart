@@ -34,6 +34,9 @@ class LoginCubit extends Cubit<LoginCubitStates> {
     ).then(
       (value) async {
         LoginModel.storeSignUpData(value.data);
+        CacheHelper.setData(
+            key: 'refreshToken', value: LoginModel.refreshToken);
+
         CacheHelper.setData(key: 'accessToken', value: LoginModel.accessToken)
             .then((value) {})
             .catchError((onError) {});
@@ -67,6 +70,8 @@ class LoginCubit extends Cubit<LoginCubitStates> {
     }).then((value) async {
       SignUpModel.storeSignUpData(value.data);
       CacheHelper.setData(key: 'accessToken', value: SignUpModel.accessToken);
+      CacheHelper.setData(key: 'refreshToken', value: SignUpModel.refreshToken);
+
       await getMyData(SignUpModel.accessToken!);
       emit(SignUpDataGetSuccess());
     }).catchError((onError) {

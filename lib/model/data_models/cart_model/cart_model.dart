@@ -1,5 +1,5 @@
 class CardModel {
-  static List<dynamic> cartData = [0];
+  static List<dynamic> cartData = [];
 
   static setDataToCard(dynamic data) {
     cartData.add(data);
