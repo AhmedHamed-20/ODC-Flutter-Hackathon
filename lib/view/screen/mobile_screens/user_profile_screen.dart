@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:la_vie/model/data_models/get_my_data_model/get_my_data_model.dart';
+import 'package:la_vie/view/components/defaults.dart';
+import 'package:la_vie/view/constants/controllers.dart';
 
+import '../../components/change_information_widget.dart';
 import '../../constants/constants.dart';
 
 class UserProfileScreen extends StatelessWidget {
@@ -138,38 +141,21 @@ class UserProfileScreen extends StatelessWidget {
                               style: Theme.of(context).textTheme.titleLarge,
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(AppPadding.p12),
-                              child: Card(
-                                child: ListTile(
-                                  leading: CircleAvatar(),
-                                  title: Text(
-                                    'Change Name',
-                                    style:
-                                        Theme.of(context).textTheme.labelLarge,
-                                  ),
-                                  trailing: Icon(
-                                    Icons.arrow_forward,
-                                    color: AppColors.iconColorGrey,
-                                  ),
-                                ),
-                              ),
-                            ),
+                                padding: const EdgeInsets.all(AppPadding.p12),
+                                child: changeInformation(
+                                    context: context,
+                                    controller: TextFormFieldControllers
+                                        .changeNameController,
+                                    title: 'Change Name',
+                                    bottomSheetTitle: 'Enter your name')),
                             Padding(
                               padding: const EdgeInsets.all(AppElevation.eL12),
-                              child: Card(
-                                child: ListTile(
-                                  leading: CircleAvatar(),
-                                  title: Text(
-                                    'Change Email',
-                                    style:
-                                        Theme.of(context).textTheme.labelLarge,
-                                  ),
-                                  trailing: Icon(
-                                    Icons.arrow_forward,
-                                    color: AppColors.iconColorGrey,
-                                  ),
-                                ),
-                              ),
+                              child: changeInformation(
+                                  bottomSheetTitle: 'Enter Your Email',
+                                  context: context,
+                                  controller: TextFormFieldControllers
+                                      .changeEmailController,
+                                  title: 'Change Email'),
                             ),
                           ],
                         ),

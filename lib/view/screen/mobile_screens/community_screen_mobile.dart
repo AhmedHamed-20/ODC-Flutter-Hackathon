@@ -68,92 +68,101 @@ class CommunityScreenMobile extends StatelessWidget {
                     right: AppPadding.p12,
                     top: AppPadding.p12,
                   ),
-                  child: Column(
-                    children: [
-                      mobileHomeSearchBar(
-                        width: double.infinity,
-                        height: AppHeight.h10,
-                        radius: AppRadius.r10,
-                        context: context,
-                        controller:
-                            TextFormFieldControllers.forumsSearchController,
-                        prefixIcon: Icon(
-                          Icons.search,
-                          color: AppColors.iconColorGrey,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        mobileHomeSearchBar(
+                          width: double.infinity,
+                          height: AppHeight.h10,
+                          radius: AppRadius.r10,
+                          context: context,
+                          controller:
+                              TextFormFieldControllers.forumsSearchController,
+                          prefixIcon: Icon(
+                            Icons.search,
+                            color: AppColors.iconColorGrey,
+                          ),
+                          label: Text(
+                            'Search',
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelMedium
+                                ?.copyWith(
+                                  color: AppColors.titleTextColor,
+                                ),
+                          ),
                         ),
-                        label: Text(
-                          'Search',
-                          style:
-                              Theme.of(context).textTheme.labelMedium?.copyWith(
-                                    color: AppColors.titleTextColor,
-                                  ),
+                        const SizedBox(
+                          height: AppHeight.h8,
                         ),
-                      ),
-                      const SizedBox(
-                        height: AppHeight.h8,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        height: AppHeight.h70,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: forumsCubit.forumsTabs.length,
-                          itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: () {
-                                forumsCubit.changeTobTabIndex(index);
-                              },
-                              child: topTabButtons(
-                                  tabs: forumsCubit.forumsTabs,
-                                  currentIndexColor:
-                                      forumsCubit.tobTabButtonsForumsIndex,
-                                  currentWidgetIndex: index,
-                                  context: context),
-                            );
-                          },
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height * 0.08,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: forumsCubit.forumsTabs.length,
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  forumsCubit.changeTobTabIndex(index);
+                                },
+                                child: topTabButtons(
+                                    tabs: forumsCubit.forumsTabs,
+                                    currentIndexColor:
+                                        forumsCubit.tobTabButtonsForumsIndex,
+                                    currentWidgetIndex: index,
+                                    context: context),
+                              );
+                            },
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: AppHeight.h8,
-                      ),
-                      Expanded(
-                        child: ListView.builder(
-                          itemBuilder: (context, index) {
-                            return postDesign(
-                              context: context,
-                              userPhoto:
-                                  forumsCubit.getUserProfilePhotoBetweenModels(
-                                      forumsCubit.tobTabButtonsForumsIndex,
-                                      index),
-                              postDate: 'a month ago',
-                              onTabOnLike: () {},
-                              postDescription:
-                                  forumsCubit.getPostDescriptionBetweenModels(
-                                      forumsCubit.tobTabButtonsForumsIndex,
-                                      index),
-                              postLikes: forumsCubit
-                                  .getPostLikesCountBetweenModels(
-                                      forumsCubit.tobTabButtonsForumsIndex,
-                                      index)
-                                  .toString(),
-                              postReplies:
-                                  '${forumsCubit.getPostCommentsCountBetweenModels(forumsCubit.tobTabButtonsForumsIndex, index)} Replies',
-                              postTitle: forumsCubit.getPostTitleBetweenModels(
-                                  forumsCubit.tobTabButtonsForumsIndex, index),
-                              userName:
-                                  '${forumsCubit.getUserNameBetweenModels(forumsCubit.tobTabButtonsForumsIndex, index)} ${forumsCubit.getUserLastNameBetweenModels(forumsCubit.tobTabButtonsForumsIndex, index)}',
-                              postPhotoUrl:
-                                  forumsCubit.getPostImageBetweenModels(
-                                      forumsCubit.tobTabButtonsForumsIndex,
-                                      index),
-                            );
-                          },
-                          itemCount: forumsCubit.tobTabButtonsForumsIndex == 0
-                              ? AllFormusModel.forumsData?.length
-                              : FormusMeModel.forumsMeData?.length,
+                        const SizedBox(
+                          height: AppHeight.h8,
                         ),
-                      ),
-                    ],
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              return postDesign(
+                                context: context,
+                                userPhoto: forumsCubit
+                                    .getUserProfilePhotoBetweenModels(
+                                        forumsCubit.tobTabButtonsForumsIndex,
+                                        index),
+                                postDate: 'a month ago',
+                                onTabOnLike: () {},
+                                postDescription:
+                                    forumsCubit.getPostDescriptionBetweenModels(
+                                        forumsCubit.tobTabButtonsForumsIndex,
+                                        index),
+                                postLikes: forumsCubit
+                                    .getPostLikesCountBetweenModels(
+                                        forumsCubit.tobTabButtonsForumsIndex,
+                                        index)
+                                    .toString(),
+                                postReplies:
+                                    '${forumsCubit.getPostCommentsCountBetweenModels(forumsCubit.tobTabButtonsForumsIndex, index)} Replies',
+                                postTitle:
+                                    forumsCubit.getPostTitleBetweenModels(
+                                        forumsCubit.tobTabButtonsForumsIndex,
+                                        index),
+                                userName:
+                                    '${forumsCubit.getUserNameBetweenModels(forumsCubit.tobTabButtonsForumsIndex, index)} ${forumsCubit.getUserLastNameBetweenModels(forumsCubit.tobTabButtonsForumsIndex, index)}',
+                                postPhotoUrl:
+                                    forumsCubit.getPostImageBetweenModels(
+                                        forumsCubit.tobTabButtonsForumsIndex,
+                                        index),
+                              );
+                            },
+                            itemCount: forumsCubit.tobTabButtonsForumsIndex == 0
+                                ? AllFormusModel.forumsData?.length
+                                : FormusMeModel.forumsMeData?.length,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               }),

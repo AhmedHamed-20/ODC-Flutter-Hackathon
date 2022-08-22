@@ -42,8 +42,9 @@ class MobileLayout extends StatelessWidget {
 
                   return IconButton(
                     onPressed: () {
-                      forumsCubit.getForumsMe(accessToken);
                       forumsCubit.getAllForums(accessToken);
+                      forumsCubit.getForumsMe(accessToken);
+
                       navigatePushTo(
                           navigateTO: CommunityScreenMobile(),
                           context: context);

@@ -126,6 +126,7 @@ class AppColors {
   static Color dividerColorGrey = const Color(0xff979797);
   static Color textFormFieldFillColor = const Color(0xffF8F8F8);
   static Color starsCircleBorder = const Color(0xffFFCA10);
+  static Color changeNameGreenColor = const Color(0xff1D592C);
 }
 
 void navigatePushTo(
