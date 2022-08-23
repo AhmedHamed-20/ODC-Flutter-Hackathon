@@ -6,6 +6,8 @@ import 'package:la_vie/view_model/forums_cubit/forums_cubit.dart';
 import 'package:la_vie/view_model/forums_cubit/forums_state.dart';
 import 'package:la_vie/view_model/general_cubit/general_cubit.dart';
 import 'package:la_vie/view_model/general_cubit/general_cubit_states.dart';
+import 'package:la_vie/view_model/user_profile_cubit/user_profile_cubit.dart';
+import 'package:la_vie/view_model/user_profile_cubit/user_profile_cubit_states.dart';
 
 import '../constants/constants.dart';
 

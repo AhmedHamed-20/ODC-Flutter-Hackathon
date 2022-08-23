@@ -7,7 +7,8 @@ Widget changeInformation(
     {required BuildContext context,
     required TextEditingController controller,
     required String title,
-    required String bottomSheetTitle}) {
+    required String bottomSheetTitle,
+    required VoidCallback onPressedOnConfirm}) {
   return GestureDetector(
     onTap: () {
       showModalBottomSheet(
@@ -40,6 +41,13 @@ Widget changeInformation(
                     const SizedBox(
                       height: AppHeight.h18,
                     ),
+                    Text(
+                      'separate between last name and first name by comma ,',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    const SizedBox(
+                      height: AppHeight.h18,
+                    ),
                     defaultTextFormField(
                       width: double.infinity,
                       height: AppHeight.h46,
@@ -47,6 +55,18 @@ Widget changeInformation(
                       context: context,
                       controller: controller,
                     ),
+                    const SizedBox(
+                      height: AppHeight.h18,
+                    ),
+                    defaultButton(
+                      onPressed: onPressedOnConfirm,
+                      buttonChild: Text(
+                        'Confirm',
+                        style: Theme.of(context).textTheme.labelMedium,
+                      ),
+                      width: double.infinity,
+                      height: AppHeight.h46,
+                    )
                   ],
                 ),
               ),

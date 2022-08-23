@@ -198,4 +198,21 @@ class ForumsCubit extends Cubit<ForumsCubitStates> {
         }
     }
   }
+
+  // getLikesUsersBetweenModels(int currentTabIndex, int widgetIndex) {
+  //   switch (currentTabIndex) {
+  //     case 0:
+  //       {
+  //         return AllFormusModel.;
+  //       }
+  //     case 1:
+  //       {
+  //         return ;
+  //       }
+  //     default:
+  //       {
+  //         return 'temp2';
+  //       }
+  //   }
+  // }
 }

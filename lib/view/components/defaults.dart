@@ -11,6 +11,7 @@ Widget defaultTextFormField({
   TextStyle? labelStyle,
   Widget? suffixIcon,
   Widget? prefixIcon,
+  String? title,
   ValueChanged<String>? onChanged,
   FormFieldValidator<String>? validator,
   ValueChanged<String>? onSubmit,

@@ -23,7 +23,7 @@ class AllFormusModel {
   }
 
   static String getForumDesciption(int index) {
-    return forumsData?[index]['description'];
+    return forumsData?[index]['description'] ?? 'test';
   }
 
   static String getForumImage(int index) {

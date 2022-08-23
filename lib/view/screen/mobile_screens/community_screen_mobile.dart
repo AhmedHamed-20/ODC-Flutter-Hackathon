@@ -9,6 +9,7 @@ import 'package:la_vie/view_model/forums_cubit/forums_state.dart';
 import 'package:la_vie/view_model/general_cubit/general_cubit.dart';
 import 'package:la_vie/view_model/general_cubit/general_cubit_states.dart';
 
+import '../../components/bottom_sheet_comments.dart';
 import '../../components/defaults.dart';
 import '../../constants/constants.dart';
 import '../../constants/controllers.dart';
@@ -126,6 +127,31 @@ class CommunityScreenMobile extends StatelessWidget {
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
                               return postDesign(
+                                ontTabOnLikeText: () {
+                                  showModalBottomSheet(
+                                    backgroundColor:
+                                        Theme.of(context).backgroundColor,
+                                    shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(AppRadius.r22),
+                                      topRight: Radius.circular(AppRadius.r22),
+                                    )),
+                                    context: context,
+                                    builder: (context) {
+                                      return ListView.builder(
+                                          itemCount: 3,
+                                          itemBuilder: (context, index) {
+                                            return bottomSheetCommentsLikes(
+                                              context: context,
+                                              title: 'title',
+                                              imageUrl:
+                                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfoEJnmZsFC7TOu4CTSzf0HiYTMctj8QberSv2zLyPoiDmHLuiXaBDCYuXGbetHewsg3Y&usqp=CAU',
+                                            );
+                                          });
+                                    },
+                                  );
+                                },
+                                ontTabOnCommentText: () {},
                                 context: context,
                                 userPhoto: forumsCubit
                                     .getUserProfilePhotoBetweenModels(

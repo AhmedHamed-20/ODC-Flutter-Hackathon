@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 
 import '../constants/constants.dart';
 
-Widget postDesign({
-  required BuildContext context,
-  required String userPhoto,
-  required String userName,
-  required String postDate,
-  required String postTitle,
-  required String postDescription,
-  String? postPhotoUrl = '',
-  required String postReplies,
-  required VoidCallback onTabOnLike,
-  required String postLikes,
-}) {
+Widget postDesign(
+    {required BuildContext context,
+    required String userPhoto,
+    required String userName,
+    required String postDate,
+    required String postTitle,
+    required String postDescription,
+    String? postPhotoUrl = '',
+    required String postReplies,
+    required VoidCallback onTabOnLike,
+    required String postLikes,
+    required VoidCallback ontTabOnLikeText,
+    required VoidCallback ontTabOnCommentText}) {
   return Card(
     elevation: AppElevation.eL2,
     shape: RoundedRectangleBorder(
@@ -105,18 +106,24 @@ Widget postDesign({
                     color: AppColors.iconColorGrey,
                   ),
                 ),
-                Text(
-                  postLikes,
-                  style: Theme.of(context).textTheme.subtitle1,
+                GestureDetector(
+                  onTap: ontTabOnLikeText,
+                  child: Text(
+                    postLikes,
+                    style: Theme.of(context).textTheme.subtitle1,
+                  ),
                 ),
               ],
             ),
             const SizedBox(
               width: AppWidth.w16,
             ),
-            Text(
-              postReplies,
-              style: Theme.of(context).textTheme.subtitle1,
+            GestureDetector(
+              onTap: ontTabOnCommentText,
+              child: Text(
+                postReplies,
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
             ),
           ],
         ),

@@ -51,4 +51,18 @@ class DioHelper {
       options: Options(headers: token),
     );
   }
+
+  static Future<dynamic> patchData({
+    String? url,
+    Map<String, dynamic>? query,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? data,
+  }) async {
+    return response = await dio!.patch(
+      data: data,
+      url!,
+      queryParameters: query,
+      options: Options(headers: headers),
+    );
+  }
 }

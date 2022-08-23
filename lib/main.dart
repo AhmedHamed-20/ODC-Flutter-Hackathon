@@ -8,6 +8,7 @@ import 'package:la_vie/view/screen/mobile_screens/login_screen.dart';
 
 import 'package:la_vie/view/theme/app_theme.dart';
 import 'package:la_vie/view_model/forums_cubit/forums_cubit.dart';
+import 'package:la_vie/view_model/user_profile_cubit/user_profile_cubit.dart';
 
 import 'view/layout/mobile_layout.dart';
 import 'view/layout/web_layout.dart';
@@ -40,6 +41,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: ((context) => ForumsCubit()),
+        ),
+        BlocProvider(
+          create: ((context) => UserProfileCubit()),
         ),
       ],
       child: BlocConsumer<LoginCubit, LoginCubitStates>(
