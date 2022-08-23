@@ -1,10 +1,15 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:la_vie/model/data_models/forum_models/all_formus_model.dart';
 import 'package:la_vie/model/data_models/forum_models/forums_me.dart';
 import 'package:la_vie/model/network/dio/dio.dart';
 import 'package:la_vie/model/network/end_points/end_points.dart';
+import 'dart:io' as Io;
 
 import 'forums_state.dart';
 
@@ -15,6 +20,8 @@ class ForumsCubit extends Cubit<ForumsCubitStates> {
   bool loadForumsData = false;
   int tobTabButtonsForumsIndex = 0;
   List forumsTabs = ['All Forums', 'My Forums'];
+  File? file;
+  String? finalImage;
   ////////////////////////func//////////////////////////////////
   Future getAllForums(String accessToken) async {
     loadForumsData = true;
@@ -27,6 +34,7 @@ class ForumsCubit extends Cubit<ForumsCubitStates> {
       },
     ).then((value) {
       AllFormusModel.storeData(value.data);
+      print(value.data);
     }).catchError((onError) {
       if (onError is DioError) {
         print(onError.response);
@@ -47,6 +55,7 @@ class ForumsCubit extends Cubit<ForumsCubitStates> {
     ).then((value) {
       FormusMeModel.storeData(value.data);
       loadForumsData = false;
+      print(value.data);
       emit(AllForumsDataGetSuccess());
     }).catchError((onError) {
       if (onError is DioError) {
@@ -199,20 +208,64 @@ class ForumsCubit extends Cubit<ForumsCubitStates> {
     }
   }
 
-  // getLikesUsersBetweenModels(int currentTabIndex, int widgetIndex) {
-  //   switch (currentTabIndex) {
-  //     case 0:
-  //       {
-  //         return AllFormusModel.;
-  //       }
-  //     case 1:
-  //       {
-  //         return ;
-  //       }
-  //     default:
-  //       {
-  //         return 'temp2';
-  //       }
-  //   }
-  // }
+  String getCommentsUsersBetweenModels(int currentTabIndex, int widgetIndex) {
+    switch (currentTabIndex) {
+      case 0:
+        {
+          return AllFormusModel.getUserComment(widgetIndex);
+        }
+      case 1:
+        {
+          return FormusMeModel.getUserComment(widgetIndex);
+        }
+      default:
+        {
+          return 'temp2';
+        }
+    }
+  }
+
+  String base64Encode(List<int> bytes) => base64.encode(bytes);
+
+  Future pickImage() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+    if (result != null) {
+      file = File(result.files.single.path.toString());
+      print(file?.path);
+      final bytes = await Io.File(file!.path).readAsBytes();
+      finalImage = "data:image/png;base64,${base64Encode(bytes)}";
+
+      print(finalImage);
+    } else {
+      // User canceled the picker
+    }
+    return result;
+  }
+
+  Future createPost({
+    required String accessToken,
+    required String postName,
+    required String postDescription,
+    required String photoUrl,
+  }) {
+    return DioHelper.postData(
+      url: EndPoints.createPost,
+      data: {
+        'title': postName,
+        'description': postDescription,
+        'imageBase64': photoUrl,
+      },
+      headers: {
+        'Authorization': 'Bearer $accessToken',
+        'Content-Type': 'application/json'
+      },
+    ).then((value) {
+      print(value.data);
+    }).catchError((onError) {
+      if (onError is DioError) {
+        print(onError.response);
+      }
+    });
+  }
 }

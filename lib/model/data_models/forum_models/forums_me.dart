@@ -19,15 +19,22 @@ class FormusMeModel {
   }
 
   static String getForumTitle(int index) {
-    return forumsMeData?[index]['title'];
+    if (forumsMeData?[index]['title'] == '') {
+      return 'temp';
+    }
+    return forumsMeData?[index]['title'] ?? 'temp';
   }
 
   static String getForumDesciption(int index) {
-    return forumsMeData?[index]['description'];
+    if (forumsMeData?[index]['description'] == '') {
+      return 'temp';
+    }
+    return forumsMeData?[index]['description'] ?? 'temp';
   }
 
   static String getForumImage(int index) {
-    if (forumsMeData?[index]['imageUrl'] == null) {
+    if (forumsMeData?[index]['imageUrl'] == null ||
+        forumsMeData?[index]['imageUrl'] == '') {
       print(forumsMeData?[index]['imageUrl']);
 
       return 'https://media.istockphoto.com/vectors/default-image-icon-vector-missing-picture-page-for-website-design-or-vector-id1357365823?k=20&m=1357365823&s=612x612&w=0&h=ZH0MQpeUoSHM3G2AWzc8KkGYRg4uP_kuu0Za8GFxdFc=';
@@ -41,11 +48,11 @@ class FormusMeModel {
   }
 
   static int countOfLikes(int index) {
-    return forumsMeData?[index]['ForumLikes'].length;
+    return forumsMeData?[index]['ForumLikes'].length ?? 0;
   }
 
   static int countOfComments(int index) {
-    return forumsMeData?[index]['ForumComments'].length;
+    return forumsMeData?[index]['ForumComments'].length ?? 0;
   }
 
   static String getUserLikeId(int index) {

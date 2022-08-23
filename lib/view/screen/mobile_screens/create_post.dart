@@ -42,7 +42,9 @@ class CreatePostScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    forumsCubit.pickImage();
+                  },
                   child: Center(
                     child: Container(
                       decoration: BoxDecoration(
@@ -117,7 +119,16 @@ class CreatePostScreen extends StatelessWidget {
                   height: AppHeight.h12,
                 ),
                 defaultButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    forumsCubit.createPost(
+                      accessToken: accessToken,
+                      photoUrl: forumsCubit.finalImage!,
+                      postDescription: TextFormFieldControllers
+                          .descriptionPostController.text,
+                      postName:
+                          TextFormFieldControllers.titlePostController.text,
+                    );
+                  },
                   buttonChild: Text(
                     'Post',
                     style: Theme.of(context).textTheme.labelMedium,

@@ -9,4 +9,5 @@ class EndPoints {
   static const String getMeForums = '$baseUrl/api/v1/forums/me';
   static const String getUserById = '$baseUrl/api/v1/user/reciepts/recieptId';
   static const String updateMyData = '$baseUrl/api/v1/user/me';
+  static const String createPost = '$baseUrl/api/v1/forums';
 }
