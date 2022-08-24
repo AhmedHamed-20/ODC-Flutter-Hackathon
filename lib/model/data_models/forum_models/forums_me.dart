@@ -15,7 +15,7 @@ class FormusMeModel {
   }
 
   static String getForumId(int index) {
-    return forumsMeData?[index]['forumId'];
+    return forumsMeData?[index]['forumId'] ?? 'temp';
   }
 
   static String getForumTitle(int index) {
@@ -56,23 +56,24 @@ class FormusMeModel {
   }
 
   static String getUserLikeId(int index) {
-    return forumsMeData?[index]['ForumLikes']['userId'];
+    return forumsMeData?[index]['ForumLikes']['userId'] ?? 'temp';
   }
 
   static String getUserIdOfComment(int index) {
-    return forumsMeData?[index]['ForumComments']['userId'];
+    return forumsMeData?[index]['ForumComments']['userId'] ?? 'temp';
   }
 
   static String getUserComment(int index, int indexOfComment) {
-    return forumsMeData?[index]['ForumComments'][indexOfComment]['comment'];
+    return forumsMeData?[index]['ForumComments'][indexOfComment]['comment'] ??
+        'temp';
   }
 
   static String getUserCommentId(int index) {
-    return forumsMeData?[index]['ForumComments']['forumCommentId'];
+    return forumsMeData?[index]['ForumComments']['forumCommentId'] ?? 'temp';
   }
 
   static String getCommentDate(int index) {
-    return forumsMeData?[index]['ForumComments']['createdAt'];
+    return forumsMeData?[index]['ForumComments']['createdAt'] ?? 'temp';
   }
 
   static String getUserPhoto(int index) {
@@ -84,10 +85,10 @@ class FormusMeModel {
   }
 
   static String getUserName(int index) {
-    return forumsMeData?[index]['user']['firstName'];
+    return forumsMeData?[index]['user']['firstName'] ?? 'temp';
   }
 
   static String getUserLastName(int index) {
-    return forumsMeData?[index]['user']['lastName'];
+    return forumsMeData?[index]['user']['lastName'] ?? 'temps';
   }
 }

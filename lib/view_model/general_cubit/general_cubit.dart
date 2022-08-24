@@ -1,4 +1,3 @@
-import 'package:date_format/date_format.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,8 +7,6 @@ import 'package:la_vie/model/data_models/product_model/all_tools_model.dart';
 import 'package:la_vie/model/data_models/product_model/plants_product_model.dart';
 import 'package:la_vie/model/network/dio/dio.dart';
 import 'package:la_vie/model/network/end_points/end_points.dart';
-import 'package:la_vie/model/qr_code_scan/qr_code_model.dart';
-import 'package:la_vie/view/components/alert_dialog.dart';
 import 'package:la_vie/view/constants/constants.dart';
 import 'package:la_vie/view/screen/mobile_screens/blog_screen_mobile.dart';
 import 'package:la_vie/view/screen/mobile_screens/login_screen.dart';
@@ -48,6 +45,10 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
     UserProfileScreen(),
     BlogScreenMobile(),
   ];
+
+  void emitExamTime() {
+    emit(ExamTimeCame());
+  }
 
   void changeCartCountNumber(
       bool isReduce, int currentHometabIndex, int currentwidgetIndex) {
@@ -536,12 +537,13 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
     qrcontroller = controller;
     controller.scannedDataStream.listen((scanData) {
       result = scanData;
-      print(QrCodeHelper.result?.code);
+      print('codeeeeeeeeeeeeeeeeeee ${result?.code}');
       emit(SetDataToCard());
     });
   }
 
 //return true of time of exame before date time of now
+  // int count = 0;
   bool checkTimeOfExam(String timeOfNextExam) {
     if (timeOfNextExam == '') {
       return false;
@@ -549,9 +551,12 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
       DateTime nextExamDate = DateTime.parse(timeOfNextExam);
       print(nextExamDate);
       if (nextExamDate.isAfter(DateTime.now())) {
+        // emit(ExamTimeCame());
+
         print('not now');
         return false;
       } else {
+        emit(ExamTimeCame());
         print('now');
         return true;
       }

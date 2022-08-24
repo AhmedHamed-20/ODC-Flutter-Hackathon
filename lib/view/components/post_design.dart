@@ -92,6 +92,7 @@ Widget postDesign(
                   width: double.infinity,
                   height: 300,
                   fit: BoxFit.cover,
+                  filterQuality: FilterQuality.low,
                 ),
               ),
         const SizedBox(

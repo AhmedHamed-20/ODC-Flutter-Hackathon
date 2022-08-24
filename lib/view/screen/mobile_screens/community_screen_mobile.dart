@@ -22,9 +22,13 @@ class CommunityScreenMobile extends StatelessWidget {
       builder: (context, state) {
         var forumsCubit = ForumsCubit.get(context);
         if (state is CommunityIniteState &&
-            (AllFormusModel.forumsData == null &&
-                FormusMeModel.forumsMeData == null)) {
+            (AllFormusModel.forumsData == null)) {
+          print('embty');
           forumsCubit.getAllForums(accessToken);
+          forumsCubit.getForumsMe(accessToken);
+        } else if (FormusMeModel.forumsMeData == null &&
+            forumsCubit.tobTabButtonsForumsIndex == 1) {
+          print('object');
           forumsCubit.getForumsMe(accessToken);
         }
         return Scaffold(

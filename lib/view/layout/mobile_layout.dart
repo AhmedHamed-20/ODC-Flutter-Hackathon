@@ -59,7 +59,7 @@ class MobileLayout extends StatelessWidget {
                 },
                 listener: (context, state) {},
               ),
-              generalCubit.checkTimeOfExam(timeOfNextExam)
+              generalCubit.checkTimeOfExam(timeOfNextExam) == false
                   ? const SizedBox.shrink()
                   : IconButton(
                       onPressed: () {
@@ -72,6 +72,7 @@ class MobileLayout extends StatelessWidget {
                                   const Duration(days: 7),
                                 )
                                 .toString());
+                        generalCubit.emitExamTime();
                       },
                       icon: Icon(
                         Icons.question_mark,

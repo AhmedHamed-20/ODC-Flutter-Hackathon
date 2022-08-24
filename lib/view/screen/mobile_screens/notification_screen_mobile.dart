@@ -29,7 +29,7 @@ class NotificationScreen extends StatelessWidget {
                         radius: AppRadius.r22,
                       ),
                       title: Text(
-                        'name',
+                        GetMyDataModel.userNotification?[index]['message'],
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                       subtitle: Text(
@@ -38,7 +38,7 @@ class NotificationScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  itemCount: 5,
+                  itemCount: GetMyDataModel.userNotification?.length ?? 5,
                   separatorBuilder: (BuildContext context, int index) {
                     return Divider(
                       color: AppColors.dividerColorGrey,

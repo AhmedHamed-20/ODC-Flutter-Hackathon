@@ -35,7 +35,9 @@ class ForumsCubit extends Cubit<ForumsCubitStates> {
       },
     ).then((value) {
       AllFormusModel.storeData(value.data);
-      //print(value.data);
+      loadForumsData = false;
+      print(value.data);
+      emit(AllForumsDataGetSuccess());
     }).catchError((onError) {
       flutterToast(
           msg: onError.response?.statusMessage ?? 'error',
@@ -50,7 +52,9 @@ class ForumsCubit extends Cubit<ForumsCubitStates> {
   }
 
   Future getForumsMe(String accessToken) async {
-    //  emit(LoadAllForumsData());
+    loadForumsData = true;
+    emit(LoadAllForumsData());
+
     return await DioHelper.getData(
       url: EndPoints.getMeForums,
       headers: {
