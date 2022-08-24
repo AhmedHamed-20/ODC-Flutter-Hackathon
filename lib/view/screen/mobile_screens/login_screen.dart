@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:la_vie/model/data_models/facebook_sign_in/facebook_sign_in.dart';
 import 'package:la_vie/model/data_models/google_sign_in/google_sign_in.dart';
 import 'package:la_vie/view/layout/mobile_layout.dart';
 import 'package:la_vie/view_model/login_cubit/login_cubit.dart';
@@ -263,7 +264,18 @@ class _LoginScreenState extends State<LoginScreen>
                                   width: AppWidth.w16,
                                 ),
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () async {
+                                    await FacebookSignInModel
+                                            .signinWithFaceBook()
+                                        .then((value) {
+                                      flutterToast(
+                                          msg: FacebookSignInModel
+                                              .userDatafacebook?['name'],
+                                          backgroundColor:
+                                              AppColors.toastSuccess,
+                                          textColor: AppColors.white);
+                                    });
+                                  },
                                   child:
                                       Image.asset('assets/images/facebook.png'),
                                 )
