@@ -10,4 +10,5 @@ class EndPoints {
   static const String getUserById = '$baseUrl/api/v1/user/reciepts/recieptId';
   static const String updateMyData = '$baseUrl/api/v1/user/me';
   static const String createPost = '$baseUrl/api/v1/forums';
+  static const String signInWithGoogle = '$baseUrl/api/v1/auth/google';
 }

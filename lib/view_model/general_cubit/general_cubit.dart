@@ -170,6 +170,10 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
       );
     }).catchError((onError) {
       if (DioError is DioError) {
+        flutterToast(
+            msg: onError.response?.statusMessage ?? 'error',
+            backgroundColor: AppColors.toastError,
+            textColor: AppColors.white);
         emit(BlogsDataGetError());
         print(onError.response);
       }
@@ -193,6 +197,10 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
     ).catchError(
       (onError) {
         if (onError is DioError) {
+          flutterToast(
+              msg: onError.response?.statusMessage ?? 'error',
+              backgroundColor: AppColors.toastError,
+              textColor: AppColors.white);
           if (onError.response?.statusCode == 401 && accessToken != '') {
             tokenExpired = true;
 
@@ -233,6 +241,10 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
       },
     ).catchError(
       (onError) {
+        flutterToast(
+            msg: onError.response?.statusMessage ?? 'error',
+            backgroundColor: AppColors.toastError,
+            textColor: AppColors.white);
         if (onError is DioError) {
           //   loadAllProudctsData = false;
           print(onError.response);

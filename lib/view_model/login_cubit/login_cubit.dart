@@ -57,6 +57,10 @@ class LoginCubit extends Cubit<LoginCubitStates> {
     ).catchError(
       (error) {
         if (error is DioError) {
+          flutterToast(
+              msg: error.response?.statusMessage ?? 'error',
+              backgroundColor: AppColors.toastError,
+              textColor: AppColors.white);
           print(error.response);
           emit(LoginDataGetError());
         }
@@ -93,8 +97,42 @@ class LoginCubit extends Cubit<LoginCubitStates> {
       emit(SignUpDataGetSuccess());
     }).catchError((onError) {
       if (onError is DioError) {
+        flutterToast(
+            msg: onError.response?.statusMessage ?? 'error',
+            backgroundColor: AppColors.toastError,
+            textColor: AppColors.white);
         print(onError.response);
         emit(SignUpDataGetError());
+      }
+    });
+  }
+
+  Future signInWithGoogle({
+    required String? id,
+    required String? photoUrl,
+    required String? name,
+    required String? email,
+  }) async {
+    return await DioHelper.postData(
+      url: EndPoints.signInWithGoogle,
+      data: {
+        "id": id,
+        "email": email,
+        "firstName": name,
+        "lastName": name,
+        "picture": photoUrl ??
+            'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930',
+      },
+      headers: {'Content-Type': 'application/json'},
+    ).then((value) {
+      print(value);
+    }).catchError((onError) {
+      if (onError is DioError) {
+        flutterToast(
+            msg: onError.response?.statusMessage ?? 'error',
+            backgroundColor: AppColors.toastError,
+            textColor: AppColors.white);
+        print(onError.response);
       }
     });
   }
@@ -117,6 +155,10 @@ class LoginCubit extends Cubit<LoginCubitStates> {
       (onError) {
         if (onError is DioError) {
           dataGetSuccess = false;
+          flutterToast(
+              msg: onError.response?.statusMessage ?? 'error',
+              backgroundColor: AppColors.toastError,
+              textColor: AppColors.white);
           print(onError.response);
           emit(UserDataGetError());
         }

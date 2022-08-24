@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:la_vie/model/data_models/google_sign_in/google_sign_in.dart';
 import 'package:la_vie/view/layout/mobile_layout.dart';
 import 'package:la_vie/view_model/login_cubit/login_cubit.dart';
 import 'package:la_vie/view_model/login_cubit/login_states.dart';
@@ -237,7 +238,24 @@ class _LoginScreenState extends State<LoginScreen>
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () async {
+                                    await GoogleSigninModel.signin()
+                                        .then((value) async {
+                                      if (value == null) {
+                                        flutterToast(
+                                            msg: 'signin faild',
+                                            backgroundColor:
+                                                AppColors.toastError,
+                                            textColor: AppColors.white);
+                                      } else {
+                                        await loginCubit.signInWithGoogle(
+                                            id: value.id,
+                                            photoUrl: value.photoUrl,
+                                            name: value.displayName,
+                                            email: value.email);
+                                      }
+                                    });
+                                  },
                                   child:
                                       Image.asset('assets/images/google.png'),
                                 ),

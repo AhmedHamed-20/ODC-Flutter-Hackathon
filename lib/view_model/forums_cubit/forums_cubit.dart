@@ -37,6 +37,10 @@ class ForumsCubit extends Cubit<ForumsCubitStates> {
       AllFormusModel.storeData(value.data);
       //print(value.data);
     }).catchError((onError) {
+      flutterToast(
+          msg: onError.response?.statusMessage ?? 'error',
+          backgroundColor: AppColors.toastError,
+          textColor: AppColors.white);
       if (onError is DioError) {
         print(onError.response);
         loadForumsData = false;
@@ -56,10 +60,14 @@ class ForumsCubit extends Cubit<ForumsCubitStates> {
     ).then((value) {
       FormusMeModel.storeData(value.data);
       loadForumsData = false;
-      print(value.data);
+      // print(value.data);
       emit(AllForumsDataGetSuccess());
     }).catchError((onError) {
       if (onError is DioError) {
+        flutterToast(
+            msg: onError.response?.statusMessage ?? 'error',
+            backgroundColor: AppColors.toastError,
+            textColor: AppColors.white);
         print(onError.response);
         loadForumsData = false;
         emit(AllForumsDataGetError());
@@ -274,6 +282,10 @@ class ForumsCubit extends Cubit<ForumsCubitStates> {
           textColor: AppColors.white);
       emit(PostCreatedSuccess());
     }).catchError((onError) {
+      flutterToast(
+          msg: onError.response?.statusMessage ?? 'error',
+          backgroundColor: AppColors.toastError,
+          textColor: AppColors.white);
       if (onError is DioError) {
         print(onError.response);
       }

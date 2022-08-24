@@ -45,6 +45,10 @@ class UserProfileCubit extends Cubit<UserProfileStates> {
       emit(DataChangedSuccess());
     }).catchError((onError) {
       if (onError is DioError) {
+        flutterToast(
+            msg: onError.response?.statusMessage ?? 'error',
+            backgroundColor: AppColors.toastError,
+            textColor: AppColors.white);
         print(onError.response);
         emit(DataChangedError());
       }
