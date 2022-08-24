@@ -5,6 +5,7 @@ import 'package:la_vie/model/network/dio/dio.dart';
 import 'package:la_vie/view/constants/constants.dart';
 import 'package:la_vie/view/screen/mobile_screens/community_screen_mobile.dart';
 import 'package:la_vie/view/screen/mobile_screens/login_screen.dart';
+import 'package:la_vie/view/screen/mobile_screens/splash_screen.dart';
 
 import 'package:la_vie/view/theme/app_theme.dart';
 import 'package:la_vie/view_model/forums_cubit/forums_cubit.dart';
@@ -55,9 +56,7 @@ class MyApp extends StatelessWidget {
               builder: ((context, constraints) {
                 if (constraints.minWidth <= 824 ||
                     constraints.minHeight <= 412) {
-                  return accessToken == ''
-                      ? const LoginScreen()
-                      : const MobileLayout();
+                  return SplashScreen();
                 }
                 return const LayoutScreenWeb();
               }),
