@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/constants.dart';
@@ -86,10 +87,11 @@ Widget postDesign(
         postPhotoUrl == ''
             ? const SizedBox()
             : Center(
-                child: Image.network(
-                  postPhotoUrl.toString(),
+                child: CachedNetworkImage(
+                  imageUrl: postPhotoUrl.toString(),
                   width: double.infinity,
-                  fit: BoxFit.fill,
+                  height: 300,
+                  fit: BoxFit.cover,
                 ),
               ),
         const SizedBox(

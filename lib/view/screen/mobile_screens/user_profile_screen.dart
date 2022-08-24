@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:la_vie/model/data_models/get_my_data_model/get_my_data_model.dart';
+import 'package:la_vie/view/components/alert_dialog.dart';
 import 'package:la_vie/view/constants/controllers.dart';
+import 'package:la_vie/view_model/general_cubit/general_cubit.dart';
+import 'package:la_vie/view_model/general_cubit/general_cubit_states.dart';
 import 'package:la_vie/view_model/user_profile_cubit/user_profile_cubit.dart';
 import 'package:la_vie/view_model/user_profile_cubit/user_profile_cubit_states.dart';
 
@@ -36,14 +39,74 @@ class UserProfileScreen extends StatelessWidget {
                             Container(
                               color: Colors.black.withOpacity(0.8),
                             ),
-                            IconButton(
-                              icon: Icon(
-                                Icons.arrow_back_ios,
-                                color: AppColors.iconColorWhite,
-                              ),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.arrow_back_ios,
+                                    color: AppColors.iconColorWhite,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.logout_outlined,
+                                    color: AppColors.iconColorWhite,
+                                  ),
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return alertDialog(
+                                          title: 'Are you sure ?',
+                                          context: context,
+                                          subTitle: 'you want to logout',
+                                          actions: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: Text(
+                                                  'No',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleMedium,
+                                                ),
+                                              ),
+                                              BlocConsumer<GeneralCubit,
+                                                  GeneralCubitStates>(
+                                                builder: (context, state) {
+                                                  var generalCubit =
+                                                      GeneralCubit.get(context);
+                                                  return TextButton(
+                                                    onPressed: () {
+                                                      generalCubit
+                                                          .logOut(context);
+                                                    },
+                                                    child: Text(
+                                                      'Yes',
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .titleMedium,
+                                                    ),
+                                                  );
+                                                },
+                                                listener: (context, state) {},
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                ),
+                              ],
                             ),
                             Align(
                               alignment: AlignmentDirectional.center,
@@ -156,11 +219,17 @@ class UserProfileScreen extends StatelessWidget {
                                                 .changeNameController.text
                                                 .contains(',') ==
                                             false) {
-                                          print('error');
+                                          flutterToast(
+                                            msg:
+                                                'please enter first name and last name separted by comma and with no spaces',
+                                            backgroundColor:
+                                                AppColors.toastError,
+                                            textColor: AppColors.white,
+                                          );
                                         } else {
-                                          print(TextFormFieldControllers
-                                              .changeNameController.text);
                                           userPofileCubit.updateMyData(
+                                            isEmail: false,
+                                            context: context,
                                             accessToken: accessToken,
                                             firstName: TextFormFieldControllers
                                                 .changeNameController.text
@@ -199,6 +268,7 @@ class UserProfileScreen extends StatelessWidget {
                                   child: changeInformation(
                                       onPressedOnConfirm: () {
                                         userPofileCubit.updateMyData(
+                                          context: context,
                                           accessToken: accessToken,
                                           email: TextFormFieldControllers
                                               .changeEmailController.text,

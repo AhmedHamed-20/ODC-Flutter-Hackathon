@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:la_vie/view/layout/mobile_layout.dart';
 import 'package:la_vie/view_model/login_cubit/login_cubit.dart';
@@ -90,6 +91,15 @@ class _LoginScreenState extends State<LoginScreen>
                           controller: TabBarController.tabController,
                           children: [
                             signUpWidget(
+                              passwordValidator: (value) =>
+                                  loginCubit.validatePassword(value),
+                              emailValidator: (value) =>
+                                  loginCubit.validateEmail(value),
+                              confirmPasswordValidator: (value) =>
+                                  loginCubit.validatePassowrdConfirm(
+                                      value,
+                                      TextFormFieldControllers
+                                          .passwordSignUpController.text),
                               states: state,
                               obScureText: loginCubit.passwordSignUpObscureText,
                               sufixIcon: IconButton(
@@ -128,41 +138,66 @@ class _LoginScreenState extends State<LoginScreen>
                               },
                             ),
                             loginWidget(
-                              state: state,
-                              obScureText: loginCubit.passwordloginObscureText,
-                              suffixIcon: IconButton(
-                                onPressed: () {
-                                  loginCubit.changeObscureValue(inLogin: true);
-                                },
-                                icon: Icon(
-                                  loginCubit.passwordloginObscureText
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
-                                  color: AppColors.iconColorGrey,
+                                validatorEmail: (value) =>
+                                    loginCubit.validateEmail(value),
+                                validatorPassword: ((value) =>
+                                    loginCubit.validatePassword(value)),
+                                state: state,
+                                obScureText:
+                                    loginCubit.passwordloginObscureText,
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    loginCubit.changeObscureValue(
+                                        inLogin: true);
+                                  },
+                                  icon: Icon(
+                                    loginCubit.passwordloginObscureText
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                    color: AppColors.iconColorGrey,
+                                  ),
                                 ),
-                              ),
-                              context: context,
-                              onPressedOnForgetPassword: () {},
-                              onPressedOnLogin: () {
-                                loginCubit
-                                    .userLogin(
-                                  context: context,
-                                  email: TextFormFieldControllers
-                                      .emailLoginController.text,
-                                  password: TextFormFieldControllers
-                                      .passwordLoginController.text,
-                                )
-                                    .then((value) {
-                                  if (state is UserDataGetError ||
-                                      loginCubit.dataGetSuccess) {
-                                    navigatePushAndRemove(
-                                        navigateTO: const MobileLayout(),
-                                        context: context);
+                                context: context,
+                                onPressedOnForgetPassword: () {},
+                                onPressedOnLogin: () {
+                                  if (TextFormFieldControllers
+                                          .passwordLoginController
+                                          .text
+                                          .isEmpty ||
+                                      TextFormFieldControllers
+                                          .emailLoginController.text.isEmpty) {
+                                    flutterToast(
+                                        msg: 'Please enter email and password',
+                                        backgroundColor: AppColors.toastWarning,
+                                        textColor: AppColors.black);
+                                  } else if (loginCubit.validatePassword(
+                                              TextFormFieldControllers
+                                                  .passwordLoginController
+                                                  .text) ==
+                                          null &&
+                                      loginCubit.validateEmail(
+                                              TextFormFieldControllers
+                                                  .emailLoginController.text) ==
+                                          null) {
+                                    loginCubit
+                                        .userLogin(
+                                      context: context,
+                                      email: TextFormFieldControllers
+                                          .emailLoginController.text,
+                                      password: TextFormFieldControllers
+                                          .passwordLoginController.text,
+                                    )
+                                        .then((value) {
+                                      if (state is UserDataGetError ||
+                                          loginCubit.dataGetSuccess) {
+                                        navigatePushAndRemove(
+                                            navigateTO: const MobileLayout(),
+                                            context: context);
+                                      }
+                                    });
+                                    // ensure that data get success from the state or bool to avoid any change in state
                                   }
-                                });
-                                // ensure that data get success from the state or bool to avoid any change in state
-                              },
-                            ),
+                                }),
                           ],
                         ),
                       ),

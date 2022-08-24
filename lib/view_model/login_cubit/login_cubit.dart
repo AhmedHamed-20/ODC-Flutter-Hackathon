@@ -8,6 +8,7 @@ import 'package:la_vie/model/data_models/login_model/user_signup_model.dart';
 import 'package:la_vie/model/network/dio/dio.dart';
 import 'package:la_vie/model/network/end_points/end_points.dart';
 import 'package:la_vie/view/constants/constants.dart';
+import 'package:la_vie/view/constants/controllers.dart';
 import 'package:la_vie/view_model/general_cubit/general_cubit.dart';
 
 import 'login_states.dart';
@@ -41,6 +42,8 @@ class LoginCubit extends Cubit<LoginCubitStates> {
             key: 'refreshToken', value: LoginModel.refreshToken);
 
         CacheHelper.setData(key: 'accessToken', value: LoginModel.accessToken);
+        TextFormFieldControllers.emailLoginController.clear();
+        TextFormFieldControllers.passwordLoginController.clear();
         await getMyData(LoginModel.accessToken!).then((value) {
           flutterToast(
               msg: 'Welcome (:',
@@ -82,8 +85,11 @@ class LoginCubit extends Cubit<LoginCubitStates> {
       CacheHelper.setData(key: 'refreshToken', value: SignUpModel.refreshToken);
       accessToken = CacheHelper.getData(key: 'accessToken');
       await getMyData(SignUpModel.accessToken!);
-      await GeneralCubit.get(context).getAllProudctsData(accessToken);
-
+      TextFormFieldControllers.emailSignUpController.clear();
+      TextFormFieldControllers.firstNameSignUpController.clear();
+      TextFormFieldControllers.lastNameSignUpController.clear();
+      TextFormFieldControllers.passwordSignUpController.clear();
+      TextFormFieldControllers.passwordConfirmSignUpController.clear();
       emit(SignUpDataGetSuccess());
     }).catchError((onError) {
       if (onError is DioError) {
@@ -125,6 +131,43 @@ class LoginCubit extends Cubit<LoginCubitStates> {
     } else {
       passwordSignUpObscureText = !passwordSignUpObscureText;
       emit(ChangePasswordObScureState());
+    }
+  }
+
+  String? validatePassword(String? value) {
+    RegExp regex = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
+    if (value == null) {
+      return 'Please enter password';
+    } else {
+      if (!regex.hasMatch(value)) {
+        return 'should contain one(upper case-lower case - digit) Must be at least 8 characters in length ';
+      } else {
+        return null;
+      }
+    }
+  }
+
+  String? validateEmail(String? value) {
+    Pattern pattern =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    RegExp regex = RegExp(pattern.toString());
+
+    if (value == null) {
+      return 'Please enter Email';
+    } else if (!(regex.hasMatch(value))) {
+      return "Invalid Email";
+    } else {
+      return null;
+    }
+  }
+
+  String? validatePassowrdConfirm(String? value, String password) {
+    if (value == null) {
+      return 'Please enter password';
+    } else if (value != password) {
+      return "Invalid Password";
+    } else {
+      return null;
     }
   }
 }

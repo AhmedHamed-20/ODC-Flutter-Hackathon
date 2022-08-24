@@ -210,6 +210,9 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
   void logOut(BuildContext context) {
     navigatePushAndRemove(navigateTO: LoginScreen(), context: context);
     CacheHelper.removeData('accessToken');
+    CacheHelper.removeData('refreshToken');
+    CacheHelper.removeData('timeOfNextExam');
+    currentBottomNavIndex = 0;
   }
 
   Future getAllProudctsData(String accessToken) async {

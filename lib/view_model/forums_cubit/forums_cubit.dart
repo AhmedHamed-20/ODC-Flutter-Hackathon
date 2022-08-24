@@ -35,7 +35,7 @@ class ForumsCubit extends Cubit<ForumsCubitStates> {
       },
     ).then((value) {
       AllFormusModel.storeData(value.data);
-      print(value.data);
+      //print(value.data);
     }).catchError((onError) {
       if (onError is DioError) {
         print(onError.response);

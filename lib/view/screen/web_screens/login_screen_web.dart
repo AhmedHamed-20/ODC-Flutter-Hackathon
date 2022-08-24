@@ -69,6 +69,15 @@ class _LoginScreenWebState extends State<LoginScreenWeb>
                       right: MediaQuery.of(context).size.width * 0.2,
                     ),
                     child: signUpWidget(
+                        passwordValidator: (value) =>
+                            loginCubit.validatePassword(value),
+                        emailValidator: (value) =>
+                            loginCubit.validateEmail(value),
+                        confirmPasswordValidator: (value) =>
+                            loginCubit.validatePassowrdConfirm(
+                                value,
+                                TextFormFieldControllers
+                                    .passwordSignUpController.text),
                         obScureText: loginCubit.passwordSignUpObscureText,
                         sufixIcon: IconButton(
                           onPressed: () {
@@ -90,6 +99,10 @@ class _LoginScreenWebState extends State<LoginScreenWeb>
                       right: MediaQuery.of(context).size.width * 0.2,
                     ),
                     child: loginWidget(
+                      validatorEmail: (value) =>
+                          loginCubit.validateEmail(value),
+                      validatorPassword: (value) =>
+                          loginCubit.validatePassword(value),
                       obScureText: loginCubit.passwordloginObscureText,
                       suffixIcon: IconButton(
                         onPressed: () {

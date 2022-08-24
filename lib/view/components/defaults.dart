@@ -31,7 +31,9 @@ Widget defaultTextFormField({
       controller: controller,
       keyboardType: keyboardType,
       decoration: InputDecoration(
-        contentPadding: const EdgeInsetsDirectional.all(AppPadding.p10),
+        errorMaxLines: 3,
+        contentPadding: const EdgeInsets.symmetric(
+            horizontal: AppPadding.p10, vertical: AppPadding.p10),
         labelStyle: labelStyle,
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,

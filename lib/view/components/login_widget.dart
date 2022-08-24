@@ -10,6 +10,8 @@ Widget loginWidget(
     required VoidCallback onPressedOnLogin,
     required VoidCallback onPressedOnForgetPassword,
     required bool obScureText,
+    required FormFieldValidator<String>? validatorPassword,
+    required FormFieldValidator<String>? validatorEmail,
     LoginCubitStates? state,
     required Widget suffixIcon}) {
   return SingleChildScrollView(
@@ -29,13 +31,20 @@ Widget loginWidget(
           padding: const EdgeInsets.only(
             bottom: AppPadding.p30,
           ),
-          child: defaultTextFormField(
-            width: double.infinity,
-            height: AppHeight.h46,
-            radius: AppRadius.r5,
-            context: context,
-            controller: TextFormFieldControllers.emailLoginController,
-            keyboardType: TextInputType.emailAddress,
+          child: Form(
+            autovalidateMode: AutovalidateMode.always,
+            child: SizedBox(
+              height: AppHeight.h70,
+              child: defaultTextFormField(
+                validator: validatorEmail,
+                width: double.infinity,
+                height: AppHeight.h46,
+                radius: AppRadius.r5,
+                context: context,
+                controller: TextFormFieldControllers.emailLoginController,
+                keyboardType: TextInputType.emailAddress,
+              ),
+            ),
           ),
         ),
         Text(
@@ -51,15 +60,21 @@ Widget loginWidget(
           padding: const EdgeInsets.only(
             bottom: AppPadding.p30,
           ),
-          child: defaultTextFormField(
-            obscureText: obScureText,
-            suffixIcon: suffixIcon,
-            width: double.infinity,
-            height: AppHeight.h46,
-            radius: AppRadius.r5,
-            context: context,
-            controller: TextFormFieldControllers.passwordLoginController,
-            keyboardType: TextInputType.emailAddress,
+          child: Form(
+            autovalidateMode: AutovalidateMode.always,
+            child: SizedBox(
+              height: AppHeight.h100,
+              child: defaultTextFormField(
+                validator: validatorPassword,
+                obscureText: obScureText,
+                suffixIcon: suffixIcon,
+                width: double.infinity,
+                height: AppHeight.h100,
+                radius: AppRadius.r5,
+                context: context,
+                controller: TextFormFieldControllers.passwordLoginController,
+              ),
+            ),
           ),
         ),
         state is LoginLoadingData

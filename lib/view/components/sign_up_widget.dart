@@ -11,6 +11,9 @@ Widget signUpWidget({
   required onTabOnSignUp,
   required Widget sufixIcon,
   required bool obScureText,
+  required FormFieldValidator<String>? emailValidator,
+  required FormFieldValidator<String>? passwordValidator,
+  required FormFieldValidator<String>? confirmPasswordValidator,
 }) {
   return SingleChildScrollView(
     child: Column(
@@ -72,13 +75,20 @@ Widget signUpWidget({
           padding: const EdgeInsets.only(
             bottom: AppPadding.p30,
           ),
-          child: defaultTextFormField(
-            width: double.infinity,
-            height: AppHeight.h46,
-            radius: AppRadius.r5,
-            context: context,
-            controller: TextFormFieldControllers.emailSignUpController,
-            keyboardType: TextInputType.emailAddress,
+          child: Form(
+            autovalidateMode: AutovalidateMode.always,
+            child: SizedBox(
+              height: AppHeight.h70,
+              child: defaultTextFormField(
+                validator: emailValidator,
+                width: double.infinity,
+                height: AppHeight.h46,
+                radius: AppRadius.r5,
+                context: context,
+                controller: TextFormFieldControllers.emailSignUpController,
+                keyboardType: TextInputType.emailAddress,
+              ),
+            ),
           ),
         ),
         Text(
@@ -94,14 +104,21 @@ Widget signUpWidget({
           padding: const EdgeInsets.only(
             bottom: AppPadding.p30,
           ),
-          child: defaultTextFormField(
-            obscureText: obScureText,
-            suffixIcon: sufixIcon,
-            width: double.infinity,
-            height: AppHeight.h46,
-            radius: AppRadius.r5,
-            context: context,
-            controller: TextFormFieldControllers.passwordSignUpController,
+          child: Form(
+            autovalidateMode: AutovalidateMode.always,
+            child: SizedBox(
+              height: AppHeight.h100,
+              child: defaultTextFormField(
+                validator: passwordValidator,
+                obscureText: obScureText,
+                suffixIcon: sufixIcon,
+                width: double.infinity,
+                height: AppHeight.h46,
+                radius: AppRadius.r5,
+                context: context,
+                controller: TextFormFieldControllers.passwordSignUpController,
+              ),
+            ),
           ),
         ),
         Text(
@@ -117,15 +134,22 @@ Widget signUpWidget({
           padding: const EdgeInsets.only(
             bottom: AppPadding.p30,
           ),
-          child: defaultTextFormField(
-            obscureText: obScureText,
-            suffixIcon: sufixIcon,
-            width: double.infinity,
-            height: AppHeight.h46,
-            radius: AppRadius.r5,
-            context: context,
-            controller:
-                TextFormFieldControllers.passwordConfirmSignUpController,
+          child: Form(
+            autovalidateMode: AutovalidateMode.always,
+            child: SizedBox(
+              height: AppHeight.h70,
+              child: defaultTextFormField(
+                validator: confirmPasswordValidator,
+                obscureText: obScureText,
+                suffixIcon: sufixIcon,
+                width: double.infinity,
+                height: AppHeight.h46,
+                radius: AppRadius.r5,
+                context: context,
+                controller:
+                    TextFormFieldControllers.passwordConfirmSignUpController,
+              ),
+            ),
           ),
         ),
         states is SignUpLoadingData
