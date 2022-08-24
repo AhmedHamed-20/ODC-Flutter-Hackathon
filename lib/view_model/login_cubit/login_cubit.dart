@@ -7,6 +7,8 @@ import 'package:la_vie/model/data_models/login_model/user_login_model.dart';
 import 'package:la_vie/model/data_models/login_model/user_signup_model.dart';
 import 'package:la_vie/model/network/dio/dio.dart';
 import 'package:la_vie/model/network/end_points/end_points.dart';
+import 'package:la_vie/view/constants/constants.dart';
+import 'package:la_vie/view_model/general_cubit/general_cubit.dart';
 
 import 'login_states.dart';
 
@@ -22,6 +24,7 @@ class LoginCubit extends Cubit<LoginCubitStates> {
   Future userLogin({
     required String email,
     required String password,
+    required BuildContext context,
   }) async {
     emit(LoginLoadingData());
     return await DioHelper.postData(
@@ -37,10 +40,15 @@ class LoginCubit extends Cubit<LoginCubitStates> {
         CacheHelper.setData(
             key: 'refreshToken', value: LoginModel.refreshToken);
 
-        CacheHelper.setData(key: 'accessToken', value: LoginModel.accessToken)
-            .then((value) {})
-            .catchError((onError) {});
-        await getMyData(LoginModel.accessToken!);
+        CacheHelper.setData(key: 'accessToken', value: LoginModel.accessToken);
+        await getMyData(LoginModel.accessToken!).then((value) {
+          flutterToast(
+              msg: 'Welcome (:',
+              backgroundColor: AppColors.toastSuccess,
+              textColor: AppColors.white);
+        });
+        accessToken = CacheHelper.getData(key: 'accessToken');
+        //   await GeneralCubit.get(context).getAllProudctsData(accessToken);
         emit(LoginDataGetSuccess());
       },
     ).catchError(
@@ -58,6 +66,7 @@ class LoginCubit extends Cubit<LoginCubitStates> {
     required String lastName,
     required String email,
     required String password,
+    required BuildContext context,
   }) async {
     emit(SignUpLoadingData());
     return await DioHelper.postData(url: EndPoints.signUp, data: {
@@ -71,8 +80,10 @@ class LoginCubit extends Cubit<LoginCubitStates> {
       SignUpModel.storeSignUpData(value.data);
       CacheHelper.setData(key: 'accessToken', value: SignUpModel.accessToken);
       CacheHelper.setData(key: 'refreshToken', value: SignUpModel.refreshToken);
-
+      accessToken = CacheHelper.getData(key: 'accessToken');
       await getMyData(SignUpModel.accessToken!);
+      await GeneralCubit.get(context).getAllProudctsData(accessToken);
+
       emit(SignUpDataGetSuccess());
     }).catchError((onError) {
       if (onError is DioError) {
@@ -82,8 +93,8 @@ class LoginCubit extends Cubit<LoginCubitStates> {
     });
   }
 
-  getMyData(String accessToken) {
-    return DioHelper.getData(
+  Future getMyData(String accessToken) async {
+    return await DioHelper.getData(
       url: EndPoints.getMe,
       headers: {
         'Authorization': 'Bearer $accessToken',

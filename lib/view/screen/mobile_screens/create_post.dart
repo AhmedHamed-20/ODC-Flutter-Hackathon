@@ -120,14 +120,26 @@ class CreatePostScreen extends StatelessWidget {
                 ),
                 defaultButton(
                   onPressed: () {
-                    forumsCubit.createPost(
-                      accessToken: accessToken,
-                      photoUrl: forumsCubit.finalImage!,
-                      postDescription: TextFormFieldControllers
-                          .descriptionPostController.text,
-                      postName:
-                          TextFormFieldControllers.titlePostController.text,
-                    );
+                    if (forumsCubit.finalImage == null ||
+                        TextFormFieldControllers
+                            .descriptionPostController.text.isEmpty ||
+                        TextFormFieldControllers
+                            .titlePostController.text.isEmpty) {
+                      flutterToast(
+                          msg:
+                              'please make sure that you fill all data (photo,title,description)',
+                          backgroundColor: AppColors.toastError,
+                          textColor: AppColors.white);
+                    } else {
+                      forumsCubit.createPost(
+                        accessToken: accessToken,
+                        photoUrl: forumsCubit.finalImage!,
+                        postDescription: TextFormFieldControllers
+                            .descriptionPostController.text,
+                        postName:
+                            TextFormFieldControllers.titlePostController.text,
+                      );
+                    }
                   },
                   buttonChild: Text(
                     'Post',

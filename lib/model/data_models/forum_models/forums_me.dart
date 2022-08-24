@@ -48,11 +48,11 @@ class FormusMeModel {
   }
 
   static int countOfLikes(int index) {
-    return forumsMeData?[index]['ForumLikes'].length ?? 0;
+    return forumsMeData?[index]['ForumLikes'].length ?? 1;
   }
 
   static int countOfComments(int index) {
-    return forumsMeData?[index]['ForumComments'].length ?? 0;
+    return forumsMeData?[index]['ForumComments'].length ?? 1;
   }
 
   static String getUserLikeId(int index) {
@@ -63,8 +63,8 @@ class FormusMeModel {
     return forumsMeData?[index]['ForumComments']['userId'];
   }
 
-  static String getUserComment(int index) {
-    return forumsMeData?[index]['ForumComments']['comment'];
+  static String getUserComment(int index, int indexOfComment) {
+    return forumsMeData?[index]['ForumComments'][indexOfComment]['comment'];
   }
 
   static String getUserCommentId(int index) {

@@ -33,3 +33,5 @@ class ChangeCartCountNumber extends GeneralCubitStates {}
 class SetDataToCard extends GeneralCubitStates {}
 
 class RemoveDataFromCard extends GeneralCubitStates {}
+
+class ExamTimeCame extends GeneralCubitStates {}

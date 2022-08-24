@@ -1,3 +1,4 @@
+import 'package:date_format/date_format.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -192,7 +193,7 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
     ).catchError(
       (onError) {
         if (onError is DioError) {
-          if (onError.response?.statusCode == 401) {
+          if (onError.response?.statusCode == 401 && accessToken != '') {
             tokenExpired = true;
 
             getMyData(
@@ -523,5 +524,22 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
       print(QrCodeHelper.result?.code);
       emit(SetDataToCard());
     });
+  }
+
+//return true of time of exame before date time of now
+  bool checkTimeOfExam(String timeOfNextExam) {
+    if (timeOfNextExam == '') {
+      return false;
+    } else {
+      DateTime nextExamDate = DateTime.parse(timeOfNextExam);
+      print(nextExamDate);
+      if (nextExamDate.isAfter(DateTime.now())) {
+        print('not now');
+        return false;
+      } else {
+        print('now');
+        return true;
+      }
+    }
   }
 }

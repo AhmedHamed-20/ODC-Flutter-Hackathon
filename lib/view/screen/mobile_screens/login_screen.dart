@@ -107,6 +107,7 @@ class _LoginScreenState extends State<LoginScreen>
                               onTabOnSignUp: () {
                                 loginCubit
                                     .signUp(
+                                  context: context,
                                   firstName: TextFormFieldControllers
                                       .firstNameSignUpController.text,
                                   lastName: TextFormFieldControllers
@@ -145,6 +146,7 @@ class _LoginScreenState extends State<LoginScreen>
                               onPressedOnLogin: () {
                                 loginCubit
                                     .userLogin(
+                                  context: context,
                                   email: TextFormFieldControllers
                                       .emailLoginController.text,
                                   password: TextFormFieldControllers

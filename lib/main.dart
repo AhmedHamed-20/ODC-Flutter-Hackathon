@@ -55,7 +55,9 @@ class MyApp extends StatelessWidget {
               builder: ((context, constraints) {
                 if (constraints.minWidth <= 824 ||
                     constraints.minHeight <= 412) {
-                  return accessToken == '' ? LoginScreen() : MobileLayout();
+                  return accessToken == ''
+                      ? const LoginScreen()
+                      : const MobileLayout();
                 }
                 return const LayoutScreenWeb();
               }),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:la_vie/model/cache/shared_preferences.dart';
 
 import '../screen/web_screens/about_screen_web.dart';
@@ -8,6 +9,8 @@ import '../screen/web_screens/home_screen_web.dart';
 import '../screen/web_screens/shop_screen_web.dart';
 
 String accessToken = CacheHelper.getData(key: 'accessToken') ?? '';
+String refreshToken = CacheHelper.getData(key: 'refreshToken') ?? '';
+String timeOfNextExam = CacheHelper.getData(key: 'timeOfNextExam') ?? '';
 
 class AppFontSize {
   static const double s10 = 10;
@@ -111,6 +114,11 @@ class AppWidth {
 }
 
 class AppColors {
+  static Color white = Colors.white;
+  static Color black = Colors.black;
+  static Color toastSuccess = Colors.green;
+  static Color toastWarning = Colors.yellow;
+  static Color toastError = Colors.red;
   static Color navBarBackgroundColor = Colors.white;
   static Color scaffoldBackgroundColor = Colors.white;
   static Color primaryColor = const Color(0xff1ABC00);
@@ -138,6 +146,18 @@ void navigatePushTo(
         return navigateTO;
       },
     ),
+  );
+}
+
+void flutterToast({
+  required String msg,
+  required Color backgroundColor,
+  required Color textColor,
+}) {
+  Fluttertoast.showToast(
+    msg: msg,
+    backgroundColor: backgroundColor,
+    textColor: textColor,
   );
 }
 

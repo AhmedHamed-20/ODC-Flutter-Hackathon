@@ -19,10 +19,16 @@ class AllFormusModel {
   }
 
   static String getForumTitle(int index) {
+    if (forumsData?[index]['title'] == '') {
+      return 'temp';
+    }
     return forumsData?[index]['title'] ?? 'temp';
   }
 
   static String getForumDesciption(int index) {
+    if (forumsData?[index]['description'] == '') {
+      return 'temp';
+    }
     return forumsData?[index]['description'] ?? 'test';
   }
 
@@ -40,11 +46,11 @@ class AllFormusModel {
   }
 
   static int countOfLikes(int index) {
-    return forumsData?[index]['ForumLikes'].length ?? 0;
+    return forumsData?[index]['ForumLikes'].length ?? 1;
   }
 
   static int countOfComments(int index) {
-    return forumsData?[index]['ForumComments'].length ?? 0;
+    return forumsData?[index]['ForumComments'].length ?? 1;
   }
 
   static String getUserLikeId(int index) {
@@ -55,8 +61,8 @@ class AllFormusModel {
     return forumsData?[index]['ForumComments']['userId'];
   }
 
-  static String getUserComment(int index) {
-    return forumsData?[index]['ForumComments']['comment'];
+  static String getUserComment(int index, int indexOfComment) {
+    return forumsData?[index]['ForumComments'][indexOfComment]['comment'];
   }
 
   static String getUserCommentId(int index) {

@@ -9,6 +9,7 @@ import 'package:la_vie/model/data_models/forum_models/all_formus_model.dart';
 import 'package:la_vie/model/data_models/forum_models/forums_me.dart';
 import 'package:la_vie/model/network/dio/dio.dart';
 import 'package:la_vie/model/network/end_points/end_points.dart';
+import 'package:la_vie/view/constants/constants.dart';
 import 'dart:io' as Io;
 
 import 'forums_state.dart';
@@ -45,7 +46,7 @@ class ForumsCubit extends Cubit<ForumsCubitStates> {
   }
 
   Future getForumsMe(String accessToken) async {
-    emit(LoadAllForumsData());
+    //  emit(LoadAllForumsData());
     return await DioHelper.getData(
       url: EndPoints.getMeForums,
       headers: {
@@ -208,15 +209,16 @@ class ForumsCubit extends Cubit<ForumsCubitStates> {
     }
   }
 
-  String getCommentsUsersBetweenModels(int currentTabIndex, int widgetIndex) {
+  String getCommentsUsersBetweenModels(
+      int currentTabIndex, int widgetIndex, int indexOfComment) {
     switch (currentTabIndex) {
       case 0:
         {
-          return AllFormusModel.getUserComment(widgetIndex);
+          return AllFormusModel.getUserComment(widgetIndex, indexOfComment);
         }
       case 1:
         {
-          return FormusMeModel.getUserComment(widgetIndex);
+          return FormusMeModel.getUserComment(widgetIndex, indexOfComment);
         }
       default:
         {
@@ -243,6 +245,10 @@ class ForumsCubit extends Cubit<ForumsCubitStates> {
     return result;
   }
 
+  void emitForumsState() {
+    emit(CommunityIniteState());
+  }
+
   Future createPost({
     required String accessToken,
     required String postName,
@@ -262,6 +268,11 @@ class ForumsCubit extends Cubit<ForumsCubitStates> {
       },
     ).then((value) {
       print(value.data);
+      flutterToast(
+          msg: 'post created success',
+          backgroundColor: AppColors.toastSuccess,
+          textColor: AppColors.white);
+      emit(PostCreatedSuccess());
     }).catchError((onError) {
       if (onError is DioError) {
         print(onError.response);
