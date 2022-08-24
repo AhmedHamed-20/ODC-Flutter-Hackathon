@@ -22,14 +22,14 @@ class CommunityScreenMobile extends StatelessWidget {
       builder: (context, state) {
         var forumsCubit = ForumsCubit.get(context);
         if (state is CommunityIniteState &&
-            (AllFormusModel.forumsData == null)) {
+            (FormusMeModel.forumsMeData == null)) {
           print('embty');
-          forumsCubit.getAllForums(accessToken);
+          // forumsCubit.getAllForums(accessToken);
           forumsCubit.getForumsMe(accessToken);
         } else if (FormusMeModel.forumsMeData == null &&
             forumsCubit.tobTabButtonsForumsIndex == 1) {
           print('object');
-          forumsCubit.getForumsMe(accessToken);
+          //  forumsCubit.getForumsMe(accessToken);
         }
         return Scaffold(
           floatingActionButton: FloatingActionButton(
@@ -218,9 +218,7 @@ class CommunityScreenMobile extends StatelessWidget {
                                         index),
                               );
                             },
-                            itemCount: forumsCubit.tobTabButtonsForumsIndex == 0
-                                ? AllFormusModel.forumsData?.length
-                                : FormusMeModel.forumsMeData?.length,
+                            itemCount: FormusMeModel.forumsMeData?.length,
                           ),
                         ),
                       ],

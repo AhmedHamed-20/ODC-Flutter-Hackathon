@@ -501,7 +501,10 @@ class GeneralCubit extends Cubit<GeneralCubitStates> {
     CardModel.setDataToCard(cardData);
     CardModel.getCardData();
     totoalCardPrice += cardData["price"] * cardData['amount'];
-
+    flutterToast(
+        msg: 'Added TO Cart',
+        backgroundColor: AppColors.toastSuccess,
+        textColor: AppColors.white);
     emit(SetDataToCard());
   }
 

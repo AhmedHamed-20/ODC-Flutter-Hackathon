@@ -140,10 +140,7 @@ Widget modelBottomSheetScan({
                             padding: const EdgeInsets.all(AppPadding.p6),
                             child: Text(
                               description,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .subtitle1
-                                  ?.copyWith(color: AppColors.iconColorGrey),
+                              style: Theme.of(context).textTheme.subtitle1,
                             ),
                           ),
                           Padding(

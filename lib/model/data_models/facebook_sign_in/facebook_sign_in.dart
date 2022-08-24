@@ -9,7 +9,6 @@ class FacebookSignInModel {
       accessTokenFacebook = result.accessToken;
       // get the user data
       // by default we get the userId, email,name and picture
-
       final userData = await FacebookAuth.instance.getUserData();
       // final userData = await FacebookAuth.instance.getUserData(fields: "email,birthday,friends,gender,link");
       userDatafacebook = userData;

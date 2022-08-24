@@ -88,7 +88,7 @@ class ForumsCubit extends Cubit<ForumsCubitStates> {
     switch (currentTabIndex) {
       case 0:
         {
-          return AllFormusModel.getForumImage(widgetIndex);
+          return FormusMeModel.getForumImage(widgetIndex);
         }
       case 1:
         {
@@ -105,7 +105,7 @@ class ForumsCubit extends Cubit<ForumsCubitStates> {
     switch (currentTabIndex) {
       case 0:
         {
-          return AllFormusModel.getForumTitle(widgetIndex);
+          return FormusMeModel.getForumTitle(widgetIndex);
         }
       case 1:
         {
@@ -122,7 +122,7 @@ class ForumsCubit extends Cubit<ForumsCubitStates> {
     switch (currentTabIndex) {
       case 0:
         {
-          return AllFormusModel.getForumDesciption(widgetIndex);
+          return FormusMeModel.getForumDesciption(widgetIndex);
         }
       case 1:
         {
@@ -139,7 +139,7 @@ class ForumsCubit extends Cubit<ForumsCubitStates> {
     switch (currentTabIndex) {
       case 0:
         {
-          return AllFormusModel.countOfLikes(widgetIndex);
+          return FormusMeModel.countOfLikes(widgetIndex);
         }
       case 1:
         {
@@ -156,7 +156,7 @@ class ForumsCubit extends Cubit<ForumsCubitStates> {
     switch (currentTabIndex) {
       case 0:
         {
-          return AllFormusModel.countOfComments(widgetIndex);
+          return FormusMeModel.countOfComments(widgetIndex);
         }
       case 1:
         {
